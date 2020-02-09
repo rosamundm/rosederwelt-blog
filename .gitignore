@@ -1,7 +1,7 @@
 dev.py
+media/
 virtenv/
-.env
 *.log
 *.pyc
 __pycache__
-media/
+.env
