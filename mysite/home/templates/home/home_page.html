@@ -1,0 +1,38 @@
+<!doctype html>
+
+{% extends "base.html" %}
+
+{% load wagtailcore_tags %}
+
+{% block body_class %}template-homepage{% endblock %}
+
+{% load static %}
+
+<head>
+  <!--bootstrap-->
+  <link rel="stylesheet" href="{% static 'css/blog-post.css' %}">
+  <!--meta tags-->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Rose der Welt</title>
+
+</head>
+
+<style>
+  body {
+       font-family: 'Be Vietnam', sans-serif;
+       font-size: 50px;
+     }
+  </style>
+
+
+{% block content %}
+
+  <center>
+
+    <div class="body"><a href="http://rosederwelt.com/blog"{{ page.body|richtext }}</a></div>
+
+  </center>
+
+{% endblock %}
+
