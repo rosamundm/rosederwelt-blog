@@ -14,7 +14,7 @@ except ImportError:
 
 SECRET_KEY = os.environ['SECRET_KEY']
 
-ALLOWED_HOSTS = os.environ('ALLOWED_HOSTS').split.(',')
+ALLOWED_HOSTS = '.rosederwelt.com'
 
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
