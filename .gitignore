@@ -1,6 +1,6 @@
 dev.py
 media/
-/virtenv
+virtenv/
 *.log
 *.pyc
 __pycache__
