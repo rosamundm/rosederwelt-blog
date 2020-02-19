@@ -41,4 +41,5 @@ if settings.DEBUG:
 handler404 = 'blog.views.handler404'
 
 #for 500 error page
-handler500 = 'blog.views.handler500'
+#handler500 = 'blog.views.handler500'
+

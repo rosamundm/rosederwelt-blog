@@ -5,6 +5,7 @@ mimetypes.init()
 mimetypes.types_map['.css'] = 'text/css', 'application/js'
 
 
+
 DEBUG = False
 
 try:
@@ -14,11 +15,13 @@ except ImportError:
 
 SECRET_KEY = os.environ['SECRET_KEY']
 
+
 ALLOWED_HOSTS = '.rosederwelt.com'
+#ALLOWED_HOSTS = os.environ('ALLOWED_HOSTS').split.(',')
+
 
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
-
 
 
 SECURE_BROWSER_XSS_FILTER = True
@@ -57,6 +60,3 @@ STATIC_URL = '/static/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-
-       
-
