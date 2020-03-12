@@ -1,18 +1,20 @@
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import render
+from search import views as search_views
 
 from wagtail.core.models import Page
 from wagtail.search.models import Query
 
 
 def search(request):
-    search_query = request.GET.get('query', None)
+    template = 'search/search.html'  #new
+    search_query = request.GET.get('q', None)
     page = request.GET.get('page', 1)
-
+    
     # Search
     if search_query:
-        search_results = Page.objects.live().search(search_query)
         query = Query.get(search_query)
+        search_results = Post.objects.filter(Q(title__icontains=query) | Q(body__icontains=query)).search(search_query)
 
         # Record hit
         query.add_hit()

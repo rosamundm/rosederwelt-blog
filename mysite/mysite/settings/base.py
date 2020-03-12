@@ -13,8 +13,6 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 
 
-
-import json
 import os
 import environ
 #from django.core.exceptions import ImproperlyConfigured
@@ -97,7 +95,7 @@ TEMPLATES = [
 
 
 
-#WSGI_APPLICATION = 'mysite.wsgi.application'
+WSGI_APPLICATION = 'mysite.wsgi.application'
 
 
 
