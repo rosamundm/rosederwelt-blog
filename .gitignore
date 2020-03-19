@@ -1,0 +1,7 @@
+dev.py
+venv
+.env
+*.log
+*.pyc
+__pycache__
+media/
