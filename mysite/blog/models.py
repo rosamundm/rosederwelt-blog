@@ -93,7 +93,7 @@ class BlogTagIndexPage(Page):
 
 
 
-"""
+
 @register_snippet
 class BlogCategory(models.Model):
     name = models.CharField(max_length=255)
@@ -112,4 +112,3 @@ class BlogCategory(models.Model):
 
     class Meta:
         verbose_name_plural = 'blog categories'
-"""
