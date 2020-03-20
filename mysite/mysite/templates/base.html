@@ -17,9 +17,10 @@
         <meta name="description" content="" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+
         {# Global stylesheets #}
-        <link rel="stylesheet" href="https://bootswatch.com/4/minty/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="{% static 'css/mysite.css' %}">
+        <link href="https://bootswatch.com/4/minty/bootstrap.min.css" rel="stylesheet">
+        <link href="{% static 'css/mysite.css' %}" type="text/css" rel="stylesheet">
 
       {% block extra_css %}
             {# Override this in templates to add extra stylesheets #}
@@ -54,7 +55,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 
 
-          <a class="navbar-brand" href="http://rosederwelt.com/">home</a>
+          <a class="navbar-brand" href="http://rosederwelt.com/">Rose der Welt</a>
         
     <!-- toggler: -->     
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggl$
@@ -67,16 +68,13 @@
             <ul class="navbar-nav mr-auto">
 
 		 <li class="nav-item">
-                   <a class="nav-link" href="https://rosederwelt.com/about">about me</a>
+                   <a class="nav-link" href="https://rosederwelt.com/about">{ ABOUT ME }</a>
                 </li>
 		 <li class="nav-item">
-                   <a class="nav-link" href="https://rosederwelt.com/vegan-berlin">vegan berlin</a>
+                   <a class="nav-link" href="https://rosederwelt.com/reading">{ WHAT I'M READING }</a>
                 </li>
 		 <li class="nav-item">
-                   <a class="nav-link" href="https://rosederwelt.com/2020-books">2020 in books</a>
-                </li>
-		 <li class="nav-item">
-                   <a class="nav-link" href="https://rosederwelt.com/2019-books">2019 in books</a>
+                   <a class="nav-link" href="https://rosederwelt.com/vegan-berlin">{ VEGAN BERLIN }</a>
                 </li>
 
             </ul>
