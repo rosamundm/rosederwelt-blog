@@ -1,12 +1,24 @@
-{% extends "base.html" %}
 
-{% block body_class %}template-404{% endblock %}
+<!DOCTYPE html>
+
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+
+<html class="no-js">
+    <head>
+        <meta charset="utf-8" />
+        <title>Oops!</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    </head>
 
 {% block content %}
-    <h1>404</h1>
+    <body>
+        <h2>Oops!</h2>
 
-    <h2>This page doesn't exist, never has, and probably never will.</h2>
+        <p>Either this page doesn't exist or the server is taking a nap.</p>
+
+    </body>
 {% endblock %}
-
-
+</html>
 

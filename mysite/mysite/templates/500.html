@@ -1,13 +1,22 @@
 <!DOCTYPE html>
+
+{% extends "base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+
 <html class="no-js">
     <head>
         <meta charset="utf-8" />
-        <title>Internal server error</title>
+        <title>Oops!</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
     </head>
-    <body>
-        <h1>500</h1>
 
-        <h2>The server is having a nap. Please try again later.</h2>
+{% block content %}
+    <body>
+        <h2>Oops!</h2>
+
+        <p>Either this page doesn't exist or the server is taking a nap.</p>
+
     </body>
+{% endblock %}
 </html>
