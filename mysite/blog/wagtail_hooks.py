@@ -15,13 +15,10 @@ def register_mark_feature(features):
         'description': 'Code',
     }
 
-   
 
     features.register_editor_plugin(
         'draftail', feature_name, draftail_features.InlineStyleFeature(control)
     )
-
-
 
     db_conversion = {
        'from_database_format': {tag: InlineStyleElementHandler(type_)},
@@ -37,4 +34,44 @@ def register_mark_feature(features):
 
 
 
+#centre text -> to revisit
 
+"""
+
+def register_centertext_feature(features):
+    feature_name = 'centre'
+    type_ = 'CENTRETEXT'
+    tag = 'div'
+
+    control = {
+        'type': type_,
+        'label': 'Centre',
+        'description': 'Centre Text';
+        'style': {
+            'display': 'block',
+            'text-align': 'centre',
+        },
+}
+
+    features.register_editor_plugin(
+        'draftail', feature_name, draftail_features.InlineStyleFeature(control)
+)
+
+    db_conversion = {
+        'from_database_format': {tag: InlineStyleElementHandler(type_)},
+        'to_database_format': {
+            'style_map': {
+                type_: {
+                    'element': tag,
+                    'props': {
+                        'class': 'd-block text-centre'
+                    }
+                }
+            }
+         }
+     }
+     
+     features.register_converter_rule('contentstate', feature_name, db_conversion)
+
+     features.default_features.append('centre')
+"""

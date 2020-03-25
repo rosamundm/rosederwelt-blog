@@ -20,11 +20,18 @@ class TextPage(Page):
         FieldPanel('body', classname="full"),
     ]
 
+
 class BlogIndexPage(Page):
     body = RichTextField(blank=True)
-    def get_context(self, request):
-        context = super().get_context(request)
-        blogpages = self.get_children().live().order_by('-first_published_at')
+
+    def get_context(self, request, *args, **kwargs):
+        context = super().get_context(request, *args, **kwargs)
+        blogpages = BlogPage.objects.live().public().order_by('-first_published_at')
+
+        if request.GET.get('tag', None):
+            tags = request.GET.get('tag')
+            blogpages = blogpages.filter(tags__slug__in=[tags])
+
         context['blogpages'] = blogpages
         return context
 
@@ -32,12 +39,14 @@ class BlogIndexPage(Page):
         FieldPanel('body', classname="full")
     ]
 
+
 class BlogPageTag(TaggedItemBase):
     content_object = ParentalKey(
         'BlogPage',
         related_name='tagged_items',
         on_delete=models.CASCADE
     )
+
 
 class BlogPage(Page):
     date = models.DateField("Post date")
@@ -66,8 +75,10 @@ class BlogPage(Page):
         InlinePanel('gallery_images', label="Gallery images"),
     ]
 
+
 class BlogPageGalleryImage(Orderable):
-    page = ParentalKey(BlogPage, on_delete=models.CASCADE, related_name='gallery_images')
+    page = ParentalKey(BlogPage, on_delete=models.CASCADE,
+                       related_name='gallery_images')
     image = models.ForeignKey(
         'wagtailimages.Image', on_delete=models.CASCADE, related_name='+'
     )
@@ -78,22 +89,21 @@ class BlogPageGalleryImage(Orderable):
         FieldPanel('caption')
     ]
 
+
 class BlogTagIndexPage(Page):
 
     def get_context(self, request):
 
-        #filter by tag
+        # filter by tag
         tag = request.GET.get('tag')
         blogpages = BlogPage.objects.filter(tags__name=tag)
 
-        #update template context
+        # update template context
         context = super().get_context(request)
         context['blogpages'] = blogpages
         return context
 
 
-
-"""
 @register_snippet
 class BlogCategory(models.Model):
     name = models.CharField(max_length=255)
@@ -112,4 +122,3 @@ class BlogCategory(models.Model):
 
     class Meta:
         verbose_name_plural = 'blog categories'
-"""
