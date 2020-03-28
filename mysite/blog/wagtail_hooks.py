@@ -37,19 +37,18 @@ def register_mark_feature(features):
 #centre text -> to revisit
 
 """
-
 def register_centertext_feature(features):
-    feature_name = 'centre'
-    type_ = 'CENTRETEXT'
+    feature_name = 'center'
+    type_ = 'CENTERTEXT'
     tag = 'div'
 
     control = {
         'type': type_,
-        'label': 'Centre',
-        'description': 'Centre Text';
+        'label': 'Center',
+        'description': 'Center Text';
         'style': {
             'display': 'block',
-            'text-align': 'centre',
+            'text-align': 'center',
         },
 }
 
@@ -64,7 +63,7 @@ def register_centertext_feature(features):
                 type_: {
                     'element': tag,
                     'props': {
-                        'class': 'd-block text-centre'
+                        'class': 'd-block text-center'
                     }
                 }
             }
@@ -73,5 +72,6 @@ def register_centertext_feature(features):
      
      features.register_converter_rule('contentstate', feature_name, db_conversion)
 
-     features.default_features.append('centre')
+     features.default_features.append('center')
+
 """

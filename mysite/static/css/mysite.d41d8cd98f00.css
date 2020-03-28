@@ -19,6 +19,12 @@
 }
 
 
+body {
+       text-align: justify;
+}
+
+
+
 
 root {
         --blue: #007bff;
