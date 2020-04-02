@@ -26,7 +26,7 @@ class BlogIndexPage(Page):
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
-        blogpages = BlogPage.objects.live().public().order_by('-first_published_at')
+        blogpages = BlogPage.objects.live().public().order_by('-date')
 
         if request.GET.get('tag', None):
             tags = request.GET.get('tag')
