@@ -9,15 +9,17 @@
   <h1>{{ page.title }}</h1>
   <p class="meta">{{ page.date }}</p>
 
-<!--{% if page.tags.all.count %}
+{% if page.tags.all.count %}
     <div class="tags">
-      <small>Category:
-      {% for tag in page.tags.all %}
-          <a href="/blog/?category={{ tag.slug }}">{{ tag }}</a>
-      {% endfor %}
-      </small>
+        <small>
+	   file under:
+            {% for tag in page.tags.all %}
+              <a href="{% slugurl 'tags' %}?tag={{ tag }}">{{ tag }}</a>,
+            {% endfor %}
+        </small>
     </div>
-{% endif %} -->
+{% endif %}
+
 
  <br>
 

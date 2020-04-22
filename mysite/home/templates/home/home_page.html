@@ -2,7 +2,7 @@
 
 {% extends "base.html" %}
 
-{% load wagtailcore_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
 
 {% block body_class %}template-homepage{% endblock %}
 
@@ -18,20 +18,13 @@
 
 </head>
 
-<style>
-  body {
-       font-family: 'Be Vietnam', sans-serif;
-       font-size: 50px;
-     }
-  </style>
+
 
 
 {% block content %}
 
-  <center>
-
+ <center>
     <div class="body">{{ page.body|richtext }}</div>
-
   </center>
 
 {% endblock %}

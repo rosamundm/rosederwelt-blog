@@ -121,4 +121,14 @@ class BlogCategory(models.Model):
         return self.name
 
     class Meta:
-        verbose_name_plural = 'blog categories'
+       verbose_name_plural = 'categories'
+"""
+from modelcluster.fields import ParentalKey, ParentalManyToManyField
+
+class BlogPage(Page):
+    body = RichTextField(blank=True)
+    categories = ParentalManyToManyField('blog.BlogCategory', blank=True)
+    content_panels = Page.content_panels + [
+        FieldPanel('body', classname="full"),
+        FieldPanel('categories', widget=forms.CheckboxSelectMultiple)
+"""
