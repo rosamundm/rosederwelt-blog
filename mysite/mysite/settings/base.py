@@ -32,6 +32,8 @@ INSTALLED_APPS = [
     'mysite',
     'blog',
 
+    'streams'
+
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
     'wagtail.embeds',
