@@ -53,28 +53,6 @@ DATABASES = {
 
 
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#        'NAME': 'wagtailblog',
-#        'USER': 'rosamund',
-#        'PASSWORD': '435u38threguofdj83rg',
-#        'HOST': 'localhost',
-#        'PORT': '5432',
-#    }
-#}
-
-
-
-
-
-
-
-
-
-
-
-
 
 STATICFILES_DIRS = [
     os.path.join(PROJECT_DIR, 'static'),
