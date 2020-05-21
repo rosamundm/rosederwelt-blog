@@ -8,7 +8,7 @@ If you clone this project, you'll have to change the settings path in `manage.py
 `mysite.settings.dev_example`
 
 
-If you don't set up a PostgreSQL one as in the Digital Ocean tutorial, will also have to change the database to a sqlite3 one in `base.py`:
+If you don't set up a PostgreSQL one as shown in the Digital Ocean tutorial, you will also have to change the database to a sqlite3 one in `base.py`:
 
 ```
 DATABASES = {
@@ -19,7 +19,7 @@ DATABASES = {
 }
 ```
 
-Generate said database by running `python manage.py migrate`, then `python manage.py createsuperuser` so that you can log into the admin of your new site.
+Generate said database by running `python manage.py migrate`, then `python manage.py createsuperuser` so that you can log into the admin of your new site. (Then `python manage.py migrate` again for the change to take.)
 
-Don't forget to set `DEBUG=True` in development and add `localhost` to `ALLOWED_HOSTS` so you can actually see stuff.
+Don't forget to set `DEBUG=True` in development and add `localhost` to `ALLOWED_HOSTS` so you can actually see stuff as you're developing! 
 
