@@ -32,7 +32,7 @@ INSTALLED_APPS = [
     'mysite',
     'blog',
 
-#    'streams',
+
     'flex',
 
     'wagtail.contrib.forms',
