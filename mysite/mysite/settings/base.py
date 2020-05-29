@@ -32,8 +32,7 @@ INSTALLED_APPS = [
     'mysite',
     'blog',
 
-
-    'flex',
+#    'myblocks',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
@@ -53,6 +52,8 @@ INSTALLED_APPS = [
     'taggit',
 
     'wagtailcodeblock',
+
+#    'wagtail.contrib.styleguide',
 
     'django.contrib.admin',
     'django.contrib.auth',

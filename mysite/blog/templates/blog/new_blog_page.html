@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags %}
+ 
+  {% with blocks=self.contents %}
+
+ 
+ 
+<!-- {% if page.tags.all.count %}
+      <div class="tags">
+          <small>
+  	   category is ~
+              {% for tag in page.tags.all %}
+                <a href="{% slugurl 'tags' %}?tag={{ tag }}">{{ tag }}</a> ~
+              {% endfor %}
+          </small>
+      </div>
+  {% endif %} -->
+
+{% if blocks %}
+
+    {% for block in blocks %}
+      {% if block.block_type == "title" %}
+         <h1>{{ block.value }}</h1>
+      {% elif block.block_type == "date" %}
+         <small>{{ block.value }}</small>
+      {% elif block.block_type == "paragraph" %}
+         {{ block }} 
+      {% elif block.block_type == "image" %}
+         {% image block.value width-900 class="img-responsive" %}
+
+
+
+
+{% include_block page.contents %}
+
+{% for block in page.contents %}
+
+ {% include_block title %}
+ {% include_block paragraph %}
+ {% include_block image %}
+ {% include_block code %}
+
+{% endfor %}
+
+
+
+

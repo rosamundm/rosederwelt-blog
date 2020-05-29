@@ -13,6 +13,8 @@
         {% with post.main_image as main_image %}
           {% if main_image %}{% image main_image fill-160x100 %}{% endif %}
         {% endwith %}
+Blog posts will be back soon!
+
         {{ post.body|richtext|truncatewords:100 }}
     {% endwith %}
 {% endfor %}

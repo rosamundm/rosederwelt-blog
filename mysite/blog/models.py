@@ -7,11 +7,16 @@ from taggit.models import TaggedItemBase
 
 from wagtail.core.models import Page, Orderable
 from wagtail.core import blocks
-from wagtail.core.fields import RichTextField
-from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel
+from wagtail.images.blocks import ImageChooserBlock
+from wagtailcodeblock.blocks import CodeBlock
+
+from wagtail.core.fields import StreamField, RichTextField
+from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel, StreamFieldPanel
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index
 from wagtail.snippets.models import register_snippet
+
+from .blocks import TitleBlock, ParaBlock, PicBlock, DmyBlock, CodingBlock
 
 class TextPage(Page):
     body = RichTextField(blank=True)
@@ -20,7 +25,7 @@ class TextPage(Page):
         FieldPanel('body', classname="full"),
     ]
 
-
+# models for BlogIndexPage and BlogPageTag need to come before BlogPage
 class BlogIndexPage(Page):
     body = RichTextField(blank=True)
 
@@ -40,6 +45,7 @@ class BlogIndexPage(Page):
     ]
 
 
+
 class BlogPageTag(TaggedItemBase):
     content_object = ParentalKey(
         'BlogPage',
@@ -48,18 +54,19 @@ class BlogPageTag(TaggedItemBase):
     )
 
 
+# model for BlogPage itself:
 class BlogPage(Page):
     date = models.DateField("Post date")
     body = RichTextField(blank=True)
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
     categories = ParentalManyToManyField('blog.BlogCategory', blank=True)
 
-    def main_image(self):
-        gallery_item = self.gallery_images.first()
-        if gallery_item:
-            return gallery_item.image
-        else:
-            return None
+#    def main_image(self):
+ #       gallery_item = self.gallery_images.first()
+  #      if gallery_item:
+   #         return gallery_item.image
+    #    else:
+     #       return None
 
     search_fields = Page.search_fields + [
         index.SearchField('body'),
@@ -72,10 +79,11 @@ class BlogPage(Page):
             FieldPanel('categories', widget=forms.CheckboxSelectMultiple),
         ], heading="Blog information"),
         FieldPanel('body'),
-        InlinePanel('gallery_images', label="Gallery images"),
+      #  InlinePanel('gallery_images', label="Gallery images"),
     ]
 
 
+"""
 class BlogPageGalleryImage(Orderable):
     page = ParentalKey(BlogPage, on_delete=models.CASCADE,
                        related_name='gallery_images')
@@ -88,7 +96,7 @@ class BlogPageGalleryImage(Orderable):
         ImageChooserPanel('image'),
         FieldPanel('caption')
     ]
-
+"""
 
 class BlogTagIndexPage(Page):
 
@@ -102,6 +110,69 @@ class BlogTagIndexPage(Page):
         context = super().get_context(request)
         context['blogpages'] = blogpages
         return context
+
+
+
+class NewBlogPage(Page):
+
+#    date = models.DateField("Post date")
+ #   tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
+ #   categories = ParentalManyToManyField("blog.BlogCategory", blank=True)
+
+    contents = StreamField(
+        [
+         ("title", TitleBlock()),
+			   DmyBlock(), 
+          ("paragraph", ParaBlock()),
+          ("image", PicBlock()),
+                           CodingBlock(),
+         ],
+         null=True,
+         blank=True,
+    )
+       # ("title", blocks.CharBlock(classname="post title")),
+       # ("paragraph", blocks.RichTextBlock()),
+       # ("image", ImageChooserBlock(icon="image")),
+       # ("code", CodeBlock())
+       # ],
+      #  default="", null=True, blank=True,)
+
+
+    content_panels = Page.content_panels + [
+         
+  #         MultiFieldPanel([
+   #        FieldPanel("date"),
+    #       FieldPanel("tags")]),
+          # FieldPanel("categories", widget=forms.CheckboxSelectMultiple),
+      # ], heading="Blog information"),
+       StreamFieldPanel("contents"),
+    ]
+
+#    template = "blog/templates/blog/new_blog_page.html",
+
+    class Meta:
+        verbose_name = "New blog page"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 @register_snippet
@@ -132,3 +203,4 @@ class BlogPage(Page):
         FieldPanel('body', classname="full"),
         FieldPanel('categories', widget=forms.CheckboxSelectMultiple)
 """
+
