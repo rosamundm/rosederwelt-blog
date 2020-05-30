@@ -16,7 +16,7 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index
 from wagtail.snippets.models import register_snippet
 
-from .blocks import TitleBlock, ParaBlock, PicBlock, DmyBlock, CodingBlock
+from streams.blocks import TitleBlock, ParaBlock, PicBlock, DmyBlock #CodingBlock
 
 class TextPage(Page):
     body = RichTextField(blank=True)
@@ -115,44 +115,29 @@ class BlogTagIndexPage(Page):
 
 class NewBlogPage(Page):
 
-#    date = models.DateField("Post date")
+# DELETE THESE?
+#    date = models.DateField("Post date", null=True, blank=True)
  #   tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
  #   categories = ParentalManyToManyField("blog.BlogCategory", blank=True)
 
     contents = StreamField(
         [
          ("title", TitleBlock()),
-			   DmyBlock(), 
-          ("paragraph", ParaBlock()),
-          ("image", PicBlock()),
-                           CodingBlock(),
-         ],
+  	 ("date", DmyBlock()), 
+         ("paragraph", ParaBlock()),
+         ("image", PicBlock()),
+#         ("code", CodingBlock()),
+        ],
          null=True,
          blank=True,
     )
-       # ("title", blocks.CharBlock(classname="post title")),
-       # ("paragraph", blocks.RichTextBlock()),
-       # ("image", ImageChooserBlock(icon="image")),
-       # ("code", CodeBlock())
-       # ],
-      #  default="", null=True, blank=True,)
 
-
-    content_panels = Page.content_panels + [
-         
-  #         MultiFieldPanel([
-   #        FieldPanel("date"),
-    #       FieldPanel("tags")]),
-          # FieldPanel("categories", widget=forms.CheckboxSelectMultiple),
-      # ], heading="Blog information"),
+    content_panels = Page.content_panels + [ 
        StreamFieldPanel("contents"),
     ]
 
-#    template = "blog/templates/blog/new_blog_page.html",
-
     class Meta:
         verbose_name = "New blog page"
-
 
 
 

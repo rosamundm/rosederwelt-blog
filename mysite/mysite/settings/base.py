@@ -32,7 +32,7 @@ INSTALLED_APPS = [
     'mysite',
     'blog',
 
-#    'myblocks',
+    'streams',
 
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
