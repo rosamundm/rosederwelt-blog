@@ -1,7 +1,11 @@
 
 {% extends "base.html" %}
 
-{{ self }}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+<div class="date-block">
+ <small>{{ self.date }}</small>
+</div>
 
 
 

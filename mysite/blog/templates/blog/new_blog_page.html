@@ -21,12 +21,12 @@
 -->
 
 
-<!-- streamfields:-->
+<!-- streamfields:
 {% with blocks=self.contents %}
 
 {% if blocks %}
 
-    {% for block in blocks %}
+    {% for block in page.contents %}
       {% if block.block_type == "title" %}
          <h1>{{ block.value }}</h1>
       {% elif block.block_type == "date" %}
@@ -37,29 +37,51 @@
       {% elif block.block_type == "image" %}
          {% image block.value width-900 class="img-responsive" %}
 
-<!-->      {% elif block.block_type == "code" %}
-         {{ block }}-->
+<!--      {% elif block.block_type == "code" %}
+         {{ block }}
  
       {% endif %}
 
 {% endfor %}
 
 {% endif %}
+-->
+
+
+{% block content %}
+{% for block in page.contents %}
+ {% include_block contents %}
+ {% endfor %}
+{% endblock %}
 
 
 
+
+
+<!--
 {% include_block page.contents %}
 
+<div class="page-contents">
 {% for block in page.contents %}
+ <div class="block-title">
+   <h1>{% include_block title %}</h1>
+ </div>
 
- {% include_block title %}
- {% include_block date %}
+ <div class="block-date">
+  <small>{% include_block date %}</small>
+ </div>
+
+ <div class="block-paragraph">
  {% include_block paragraph %}
+ </div>
+
+ <div class="block-image">
  {% include_block image %}
-<!-- {% include_block code %}-->
-
+ </div>
+<!-- {% include_block code %}
 {% endfor %}
+</div>
 
 
-
+-->
 

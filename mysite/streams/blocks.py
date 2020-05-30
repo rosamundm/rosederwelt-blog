@@ -9,7 +9,7 @@ from wagtailcodeblock.blocks import CodeBlock
 
 class TitleBlock(blocks.CharBlock):
     title = CharBlock(classname="post_title", required=True)
-    template = "streams/templates/streamstitle_block.html"
+    template = "streams/templates/streams/title_block.html"
 
     class Meta:
         icon = "title"
@@ -46,4 +46,10 @@ class CodingBlock(blocks.StructBlock):
         template = "streams/templates/streams/code_block.html"
 
 """
-
+# all blocks put together in one stream for use in blog/models:
+class MyStream(blocks.StreamBlock):
+    title = TitleBlock()
+    paragraph = ParaBlock()
+    image = PicBlock()
+    date = DmyBlock()
+    #code = CodeBlock()

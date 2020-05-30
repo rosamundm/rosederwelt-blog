@@ -1,6 +1,9 @@
-{% load wagtailimages_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
 
+
+<div class="pic-block">
 <figure>
     {% image self.image fill-600x600 %}
     <figcaption>{{ self.caption }}</figcaption>
 </figure>
+</div>
