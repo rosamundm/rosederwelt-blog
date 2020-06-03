@@ -1,0 +1,3 @@
+- add SEO
+- add search function for blog index pages
+- add StreamFields to a (new) blog page model
