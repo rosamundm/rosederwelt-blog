@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load static wagtailcore_tags wagtailimages_tags %}
- 
+
+
+{% block body_class %}template-newblogpage{% endblock %} 
 
 <!--from regular page:
 
@@ -21,7 +23,6 @@
 -->
 
 
-<!-- streamfields:
 {% with blocks=self.contents %}
 
 {% if blocks %}
@@ -30,8 +31,7 @@
       {% if block.block_type == "title" %}
          <h1>{{ block.value }}</h1>
       {% elif block.block_type == "date" %}
-         <small>{{ block.value }}</small>
-     {% endif %}    
+         <small>{{ block.value }}</small>    
       {% elif block.block_type == "paragraph" %}
          {{ block }} 
       {% elif block.block_type == "image" %}
@@ -39,13 +39,12 @@
 
 <!--      {% elif block.block_type == "code" %}
          {{ block }}
- 
+ -->
       {% endif %}
 
 {% endfor %}
 
 {% endif %}
--->
 
 
 {% block content %}

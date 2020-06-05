@@ -1,12 +1,10 @@
-l<!doctype html>
+<!doctype html>
 
 {% extends "base.html" %}
 
-{% load wagtailcore_tags wagtailimages_tags %}
+{% load static wagtailcore_tags wagtailimages_tags %}
 
 {% block body_class %}template-homepage{% endblock %}
-
-{% load static %}
 
 <head>
   <!--bootstrap-->
@@ -19,12 +17,11 @@ l<!doctype html>
 </head>
 
 
-
-
 {% block content %}
 
-<div class="body" align="right">{{ page.body|richtext }}</div>
-
+<div class="body" align="center">
+ <a href="https://rosederwelt.com/blog">{{ page.body|richtext }}</a>
+</div>
 
 {% endblock %}
 

@@ -9,18 +9,18 @@ from wagtailcodeblock.blocks import CodeBlock
 
 class TitleBlock(blocks.CharBlock):
     title = CharBlock(classname="post_title", required=True)
-    template = "streams/templates/streams/title_block.html"
+    template = "streams/title_block.html"
 
     class Meta:
         icon = "title"
-        template = "streams/templates/streams/title_block.html"
+        template = "streams/title_block.html"
 
 class ParaBlock(blocks.RichTextBlock):
     paragraph = RichTextBlock(classname="post_text", required=True)
     editor = "default"
 
     class Meta:
-        template = "streams/templates/streams/para_block.html"
+        template = "streams/para_block.html"
 
 class PicBlock(blocks.StructBlock):
     image = ImageChooserBlock(classname="post_image", required=False)
@@ -28,7 +28,7 @@ class PicBlock(blocks.StructBlock):
   
     class Meta:
         icon = "image"
-        template = "streams/templates/streams/pic_block.html"
+        template = "streams/pic_block.html"
 
 
 class DmyBlock(blocks.DateBlock):
@@ -36,7 +36,7 @@ class DmyBlock(blocks.DateBlock):
     format = "%d %B %Y"
 
     class Meta:
-        template = "streams/templates/streams/date_block.html"
+        template = "streams/date_block.html"
 
 """
 class CodingBlock(blocks.StructBlock):

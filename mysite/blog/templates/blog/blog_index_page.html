@@ -8,14 +8,16 @@
 
 {% for post in blogpages %}
     {% with post=post.specific %}
+
         <h2><a href="{% pageurl post %}">{{ post.title|richtext }}</a></h2>
 
-        {% with post.main_image as main_image %}
-          {% if main_image %}{% image main_image fill-160x100 %}{% endif %}
-        {% endwith %}
+        {{ post.date }}
 
-        {{ post.body|richtext|truncatewords:100 }}
-    {% endwith %}
+        <br>
+        <br>
+
+   {% endwith %}
 {% endfor %}
+
 
 {% endblock %}
