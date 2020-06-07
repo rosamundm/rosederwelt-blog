@@ -93,8 +93,12 @@ class BlogTagIndexPage(Page):
 
 class NewBlogPage(Page):
 
-    #date = models.DateField("Post date", null=True, blank=True)
-    #tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
+    template = "blog/new_blog_page.html" 
+
+    body = RichTextField(blank=True)
+    date = models.DateField("Post date", null=True, blank=True)
+    tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
+
     contents = StreamField(
         MyStream(),
         verbose_name = "My Stream",
@@ -103,14 +107,15 @@ class NewBlogPage(Page):
     )
 
     content_panels = Page.content_panels + [
-       StreamFieldPanel("contents"),
+        MultiFieldPanel([
+           FieldPanel('date'),
+           FieldPanel('tags')], 
+           heading="Blog information"),
+        StreamFieldPanel("contents"),
     ]
-
-    template = "blog/new_blog_page.html"
 
     class Meta:
         verbose_name = "New blog page"
-
 
 
 
