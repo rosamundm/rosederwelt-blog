@@ -10,7 +10,7 @@ from wagtailcodeblock.blocks import CodeBlock
 class TitleBlock(blocks.CharBlock):
     title = CharBlock(
         classname="post_title", 
-        required=True, 
+        required=False, 
         template = "streams/title_block.html"
     )
 
@@ -18,11 +18,10 @@ class TitleBlock(blocks.CharBlock):
         icon = "title"
 
 
-
 class ParaBlock(blocks.RichTextBlock):
     paragraph = RichTextBlock(
         classname="post_text", 
-        required=True, 
+        required=False, 
         template = "streams/para_block.html"
     )
     editor = "default"
@@ -46,24 +45,23 @@ class PicBlock(blocks.StructBlock):
 class DmyBlock(blocks.DateBlock):
     date = DateBlock(
         classname="post_date",
-        required=True,
+        required=False,
         template = "streams/date_block.html"  
     )
     format = "%d %B %Y"
 
 
-"""
+
 class CodingBlock(blocks.StructBlock):
     code = CodeBlock(classname = "post_code", required=False)
 
     class Meta:
         template = "streams/templates/streams/code_block.html"
 
-"""
 # all blocks put together in one stream for use in blog/models:
 class MyStream(blocks.StreamBlock):
-    title = TitleBlock()
+    #title = TitleBlock()
     paragraph = ParaBlock()
     image = PicBlock()
-    date = DmyBlock()
+    #date = DmyBlock()
     #code = CodeBlock()

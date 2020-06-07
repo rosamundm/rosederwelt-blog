@@ -90,7 +90,7 @@ class BlogTagIndexPage(Page):
         return context
 
 
-
+"""
 class NewBlogPage(Page):
 
     template = "blog/new_blog_page.html" 
@@ -117,9 +117,31 @@ class NewBlogPage(Page):
     class Meta:
         verbose_name = "New blog page"
 
+"""
 
 
 
+class StreamBlogPage(BlogPage):
+    template = "blog/templates/blog/stream_blog_page.html"
+
+    contents = StreamField(
+        MyStream(),
+        verbose_name = "My Stream",
+        blank=True,
+	null=True,
+    )
+
+    content_panels = Page.content_panels + [
+        MultiFieldPanel([
+           FieldPanel('date'),
+           FieldPanel('tags'),
+           FieldPanel('categories', widget=forms.CheckboxSelectMultiple)],
+           heading = "Blog information"),
+        StreamFieldPanel("contents"),
+    ]
+
+    class Meta:
+        verbose_name = "Stream blog page"
 
 
 
