@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags wagtailimages_tags %}
+
+{% block body_class %}template-streamblogpage{% endblock %} 
+
+{% include "blog/templates/blog/blog_page.html" %}
+
+<!--
+{% block content %}
+
+  <h1>{{ page.title }}</h1>
+  <p class="meta">{{ page.date }}</p>
+{% if page.tags.all.count %}
+    <div class="tags">
+        <small>
+	   category is ~ 
+            {% for tag in page.tags.all %}
+              <a href="{% slugurl 'tags' %}?tag={{ tag }}">{{ tag }}</a> ~
+            {% endfor %}
+        </small>
+    </div>
+{% endif %}
+-->
+
+{% for block in page.contents %}    
+
+   {% include_block block %}
+
+ {% endfor %}
+
+{% endblock content %}
+
+
+   
+
+<!--
+{% include_block page.contents %}
+
+<div class="page-contents">
+{% for block in page.contents %}
+  
+   {% if block.block_type == "title" %}
+    <div class="block-title">
+     <h1>{% include_block title %}</h1>
+    </div>
+
+   {% elif block.blocktype == "date" %}
+    <div class="block-date">
+     <small>{% include_block date %}</small>
+    </div>
+
+   {% elif block.block_type == "paragraph" %}
+    <div class="block-paragraph">
+     {% include_block paragraph %}
+    </div>
+
+   {% elif block.block_type == "image"%}
+   <div class="block-image">
+    {% include_block image block.value width-900 class="img-responsive" %}
+   </div>
+
+   {% endif %}
+{% endfor %}
+</div>
+
+
+-->

@@ -90,38 +90,9 @@ class BlogTagIndexPage(Page):
         return context
 
 
-"""
-class NewBlogPage(Page):
-
-    template = "blog/new_blog_page.html" 
-
-    body = RichTextField(blank=True)
-    date = models.DateField("Post date", null=True, blank=True)
-    tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
-
-    contents = StreamField(
-        MyStream(),
-        verbose_name = "My Stream",
-        blank=True,
-	null=True,
-    )
-
-    content_panels = Page.content_panels + [
-        MultiFieldPanel([
-           FieldPanel('date'),
-           FieldPanel('tags')], 
-           heading="Blog information"),
-        StreamFieldPanel("contents"),
-    ]
-
-    class Meta:
-        verbose_name = "New blog page"
-
-"""
-
-
 
 class StreamBlogPage(BlogPage):
+
     template = "blog/templates/blog/stream_blog_page.html"
 
     contents = StreamField(
