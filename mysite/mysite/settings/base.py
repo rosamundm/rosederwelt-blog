@@ -32,8 +32,6 @@ INSTALLED_APPS = [
     'mysite',
     'blog',
 
-    'streams',
-
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
     'wagtail.embeds',
@@ -83,11 +81,11 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-           # os.path.join(PROJECT_DIR, 'templates'),
-            "/mysite/mysite/templates/mysite/",
-            "/mysite/home/templates/"
-            "/mysite/blog/templates/blog/",
-            "/mysite/streams/templates/streams/",
+            os.path.join(PROJECT_DIR, 'templates'),
+           # "/mysite/mysite/templates/mysite/",
+           # "/mysite/home/templates/"
+           # "/mysite/blog/templates/blog/",
+           # "/mysite/streams/templates/streams/",
         ],
         'APP_DIRS': True,
         'OPTIONS': {

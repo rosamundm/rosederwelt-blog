@@ -16,7 +16,8 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index
 from wagtail.snippets.models import register_snippet
 
-from streams.blocks import MyStream
+from .blocks import MyStream
+
 #TitleBlock, ParaBlock, PicBlock, DmyBlock #CodingBlock
 
 class TextPage(Page):
