@@ -13,14 +13,20 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 import environ
-
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
+sentry_sdk.init(
+    dsn="https://230972856c5e46b09e91104228af0679@o406741.ingest.sentry.io/5274836",
+    integrations=[DjangoIntegration()],
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
+    # If you wish to associate users to errors (assuming you are using
+    # django.contrib.auth) you may enable sending PII data.
+    send_default_pii=True
+)
 
 
 # Application definition
@@ -45,6 +51,7 @@ INSTALLED_APPS = [
     'wagtail.core',
 
     'wagtail.contrib.routable_page',
+    'wagtail.contrib.modeladmin',
 
     'modelcluster',
     'taggit',
