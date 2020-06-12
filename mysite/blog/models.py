@@ -94,7 +94,7 @@ class BlogTagIndexPage(Page):
 
 class StreamBlogPage(BlogPage):
 
-    template = "blog/templates/blog/stream_blog_page.html"
+    template = "blog/stream_blog_page.html"
 
     contents = StreamField(
         MyStream(),
