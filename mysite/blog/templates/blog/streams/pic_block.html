@@ -1,0 +1,13 @@
+{% block body_class %}template-picblock{% endblock %}
+
+{% load wagtailcore_tags %}
+
+
+<section>
+ <div class="pic-block">
+  <figure>
+    {% image self.image fill-600x600 %}
+    <figcaption>{{ self.caption }}</figcaption>
+  </figure>
+ </div>
+</section>

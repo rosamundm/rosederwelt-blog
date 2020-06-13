@@ -1,10 +1,15 @@
 {% extends "base.html" %}
 
-{% load static wagtailcore_tags wagtailimages_tags %}
+{% load static wagtailcore_tags wagtailimages_tags wagtailcodeblock_tags %}
+
+
+<!-- for WagtailCodeBlock: -->
+<script src="{% static 'js/prism.js' %}" type="text/javascript"></script>
+<link rel="stylesheet" href="{% static 'css/prism.css' %}" type="text/css">
+
+{% load_prism_theme %}
 
 {% block body_class %}template-streamblogpage{% endblock %} 
-
-
 
 
 {% block content %}
@@ -23,7 +28,7 @@
     </div>
 {% endif %}
 
-
+<br>
 
 
 {% with blocks=self.contents %}
@@ -35,8 +40,12 @@
            </div>
         {% elif block.block_type == "image" %}
            <div>   
-         {% image block.value width-400 %}
-           </div>   
+         {% image block.value width-400 class="img-responsive"%}
+           </div>
+        {% else %}
+        <section class="block-{{ block.block_type }}">
+               {{ block }}
+           </section>   
      {% endif %}
     {% endfor %}
 
