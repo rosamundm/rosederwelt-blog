@@ -5,7 +5,7 @@
 
 <!-- for WagtailCodeBlock: -->
 <script src="{% static 'js/prism.js' %}" type="text/javascript"></script>
-<link rel="stylesheet" href="{% static 'css/prism.css' %}" type="text/css">
+<link rel="stylesheet" href="{% static 'css/prism-synthwave84.css' %}" type="text/css">
 
 {% load_prism_theme %}
 
@@ -40,7 +40,7 @@
            </div>
         {% elif block.block_type == "image" %}
            <div>   
-         {% image block.value width-400 class="img-responsive"%}
+         {% image value.image width-400 class="img-responsive"%}
            </div>
         {% else %}
         <section class="block-{{ block.block_type }}">
