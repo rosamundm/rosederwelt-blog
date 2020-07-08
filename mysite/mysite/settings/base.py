@@ -89,10 +89,6 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(PROJECT_DIR, 'templates'),
-           # "/mysite/mysite/templates/mysite/",
-           # "/mysite/home/templates/"
-           # "/mysite/blog/templates/blog/",
-           # "/mysite/streams/templates/streams/",
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -101,6 +97,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                
+#                'home.context_processors.copyright_context',
             ],
         },
     },

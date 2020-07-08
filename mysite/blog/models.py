@@ -119,18 +119,6 @@ class StreamBlogPage(BlogPage):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 @register_snippet
 class BlogCategory(models.Model):
     name = models.CharField(max_length=255)

@@ -40,7 +40,7 @@
            </div>
         {% elif block.block_type == "image" %}
            <div>   
-         {% image value.image width-400 class="img-responsive"%}
+         {% image block.value width-400 class="img-responsive"%}
            </div>
         {% else %}
         <section class="block-{{ block.block_type }}">

@@ -13,9 +13,15 @@ from wagtail.admin.edit_handlers import FieldPanel
 #from wagtail.snippets.models import register_snippet
 
 
+import datetime
+
 class HomePage(Page):
     body = RichTextField(blank=True)
 
     content_panels = Page.content_panels + [
         FieldPanel('body', classname="full"),
     ]
+
+    def copyright_context(request):
+        current_datetime = datetime.datetime.now()
+        return {"current_year": current_datetime.year}
