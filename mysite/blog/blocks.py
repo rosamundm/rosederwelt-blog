@@ -1,7 +1,7 @@
 from wagtail.core import blocks
 from wagtail.core.blocks import (
     CharBlock, ChoiceBlock, RichTextBlock, StreamBlock,
-StructBlock, TextBlock, DateBlock
+StructBlock, TextBlock, DateBlock, ListBlock
 )
 from wagtail.images.blocks import ImageChooserBlock
 from wagtailcodeblock.blocks import CodeBlock
@@ -29,6 +29,7 @@ class ParaBlock(blocks.RichTextBlock):
     class Meta:
         icon = "edit"
 
+"""
 class PicBlock(blocks.StructBlock):
     image = ImageChooserBlock(
         classname="post_image",
@@ -40,6 +41,16 @@ class PicBlock(blocks.StructBlock):
 
     class Meta:
         icon = "image"
+"""
+
+class PicBlock(blocks.StructBlock):
+    image = ImageChooserBlock()
+    caption = blocks.CharBlock(required=False)
+    template = "blog/streams/pic_block.html"
+
+    class Meta:
+        icon = "image"
+
 
 
 class DmyBlock(blocks.DateBlock):

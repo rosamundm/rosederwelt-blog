@@ -39,13 +39,18 @@
                {{ block.value }}
            </div>
         {% elif block.block_type == "image" %}
-           <div>   
-         {% image block.value width-400 class="img-responsive"%}
+          <section>
+           <div class="pic-block">
+             <figure>
+              {% image contents.image width-300 %}
+               <figcaption>{{ value.caption }}</figcaption>
+             </figure>
            </div>
+          </section>
         {% else %}
         <section class="block-{{ block.block_type }}">
-               {{ block }}
-           </section>   
+          {{ block }}
+        </section>   
      {% endif %}
     {% endfor %}
 

@@ -18,8 +18,6 @@ from wagtail.snippets.models import register_snippet
 
 from .blocks import MyStream
 
-#TitleBlock, ParaBlock, PicBlock, DmyBlock #CodingBlock
-
 class TextPage(Page):
     body = RichTextField(blank=True)
 

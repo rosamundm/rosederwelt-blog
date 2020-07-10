@@ -6,8 +6,9 @@
 <section>
  <div class="pic-block">
   <figure>
-    {% image self.image fill-600x600 %}
-    <figcaption>{{ self.caption }}</figcaption>
+    {% image contents.image width-300 %}
+     <img src"{{ contents.image }}" />
+    <figcaption>{{ value.caption }}</figcaption>
   </figure>
  </div>
 </section>
