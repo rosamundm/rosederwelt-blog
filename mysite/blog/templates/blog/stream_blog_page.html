@@ -39,14 +39,14 @@
                {{ block.value }}
            </div>
         {% elif block.block_type == "image" %}
-          <section>
-           <div class="pic-block">
-             <figure>
-              {% image contents.image width-300 %}
-               <figcaption>{{ value.caption }}</figcaption>
-             </figure>
-           </div>
-          </section>
+         <section> 
+          <div class="pic-block">
+              {% image block.image width-300 as my_image %}
+                 <img src="{{ my_image.url }}" class="img-responsive" />
+               <p>{{ my_image.caption }}</p>
+          </div> 
+         </section>
+
         {% else %}
         <section class="block-{{ block.block_type }}">
           {{ block }}

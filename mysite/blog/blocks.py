@@ -29,19 +29,7 @@ class ParaBlock(blocks.RichTextBlock):
     class Meta:
         icon = "edit"
 
-"""
-class PicBlock(blocks.StructBlock):
-    image = ImageChooserBlock(
-        classname="post_image",
-        required=False,
-        template = "blog/streams/pic_block.html"
-    )
 
-    caption = CharBlock(required=False)
-
-    class Meta:
-        icon = "image"
-"""
 
 class PicBlock(blocks.StructBlock):
     image = ImageChooserBlock()
