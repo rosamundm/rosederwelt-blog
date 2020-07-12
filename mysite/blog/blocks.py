@@ -1,3 +1,8 @@
+from wagtail.admin.edit_handlers import (FieldPanel, FieldRowPanel,
+                                         InlinePanel, MultiFieldPanel,
+                                         PageChooserPanel, StreamFieldPanel)
+
+
 from wagtail.core import blocks
 from wagtail.core.blocks import (
     CharBlock, ChoiceBlock, RichTextBlock, StreamBlock,
@@ -32,19 +37,12 @@ class ParaBlock(blocks.RichTextBlock):
 
 
 class PicBlock(blocks.StructBlock):
-
-    pic_block = blocks.ListBlock(
-        blocks.StructBlock(
-            [
-                ("image", ImageChooserBlock(required=True)),
-                ("caption", CharBlock(required=False))
-            ]
-        )
-    )
+    image = ImageChooserBlock(required=True),
+    #caption = CharBlock(required=False)
+    template = "blog/streams/pic_block.html"
 
     class Meta:
         icon = "image"
-        template = "blog/streams/pic_block.html"
 
 
 class DmyBlock(blocks.DateBlock):
@@ -72,3 +70,26 @@ class MyStream(blocks.StreamBlock):
     paragraph = ParaBlock()
     image = PicBlock()
     code = CodeBlock()
+
+
+
+"""new"""
+
+class ColumnBlock(blocks.StreamBlock):
+    heading = blocks.CharBlock(classname="full title")
+    paragraph = blocks.RichTextBlock()
+    image = ImageChooserBlock()
+
+    class Meta:
+        template = 'blog/streams/column.html'
+
+
+class TwoColumnBlock(blocks.StructBlock):
+
+    left_column = ColumnBlock(icon='arrow-right', label='Left column content')
+    right_column = ColumnBlock(icon='arrow-right', label='Right column content')
+
+    class Meta:
+        template = 'blog/streams/two_column_block.html'
+        icon = 'placeholder'
+        label = 'Two Columns'

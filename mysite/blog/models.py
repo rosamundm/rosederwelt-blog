@@ -16,7 +16,10 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index
 from wagtail.snippets.models import register_snippet
 
-from .blocks import MyStream
+from .blocks import MyStream, ColumnBlock, TwoColumnBlock
+
+from wagtail_markdown.utils import MarkdownField, MarkdownPanel
+
 
 class TextPage(Page):
     body = RichTextField(blank=True)
@@ -109,6 +112,55 @@ class StreamBlogPage(BlogPage):
 
     class Meta:
         verbose_name = "Stream blog page"
+
+
+"""
+
+# custom markdown page:
+
+class MarkdownBlogPage(BlogPage):
+    template = "blog/markdown_blog_page.html"
+
+    md_body = MarkdownField()
+    
+    content_panels = Page.content_panels + [
+        MultiFieldPanel([
+           FieldPanel('date'),
+           FieldPanel('tags'),
+           FieldPanel('categories', widget=forms.CheckboxSelectMultiple)],
+           heading = "Blog information"),
+        MarkdownPanel("md_body"),
+    ]
+
+    class Meta:
+        verbose_name = "Markdown blog page"
+
+
+
+# basic md page:
+class MarkdownPage(Page):
+    body = MarkdownField()
+    
+    content_panels = Page.content_panels + [
+        MarkdownPanel("body"),
+    ]
+
+
+
+class LandingPage(Page):
+    body = StreamField([
+        ("heading", blocks.CharBlock(classname="full title")),
+        ("paragraph", blocks.RichTextBlock()),
+        ("image", ImageChooserBlock(icon="image")),
+        ("two_columns", TwoColumnBlock()),
+    ],null=True,blank=True)
+
+    content_panels = Page.content_panels + [
+        StreamFieldPanel("body"),
+    ]
+
+
+"""
 
 
 
