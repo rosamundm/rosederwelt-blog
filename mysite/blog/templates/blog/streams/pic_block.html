@@ -1,14 +1,22 @@
+<!--
+
 {% block body_class %}template-picblock{% endblock %}
 
 {% load static wagtailcore_tags wagtailimages_tags %}
 
 
+
+<div class="container mb-sm-5 mt-sm-5">
+  {% for pic in self.pic_block %}
   <figure>
-    {% image contents.image width-300 as my_image %}
-     <img src="{{ my_image.url }}" class="img-responsive" />
-    <figcaption>{{ my_image.caption }}</figcaption>
-  </figure>
+    {% image pic.image fill-300x200 as my_pic %}
+    <div class="pic">
+        <img src="{{ my_pic.url }}" alt="{{ my_pic.alt }}" class="my-pic-stream" />
+    </div>
+    <div class="caption">
+      <figcaption>{{ my_pic.caption }}</figcaption>
+ </figure>
+  {% endfor %}
+</div>
 
-
-
-
+-->

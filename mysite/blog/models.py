@@ -76,7 +76,6 @@ class BlogPage(Page):
 
 
 class BlogTagIndexPage(Page):
-
     def get_context(self, request):
 
         # filter by tag
@@ -89,9 +88,7 @@ class BlogTagIndexPage(Page):
         return context
 
 
-
 class StreamBlogPage(BlogPage):
-
     template = "blog/stream_blog_page.html"
 
     contents = StreamField(
@@ -115,8 +112,6 @@ class StreamBlogPage(BlogPage):
 
 
 
-
-
 @register_snippet
 class BlogCategory(models.Model):
     name = models.CharField(max_length=255)
@@ -135,14 +130,3 @@ class BlogCategory(models.Model):
 
     class Meta:
        verbose_name_plural = 'categories'
-"""
-from modelcluster.fields import ParentalKey, ParentalManyToManyField
-
-class BlogPage(Page):
-    body = RichTextField(blank=True)
-    categories = ParentalManyToManyField('blog.BlogCategory', blank=True)
-    content_panels = Page.content_panels + [
-        FieldPanel('body', classname="full"),
-        FieldPanel('categories', widget=forms.CheckboxSelectMultiple)
-"""
-

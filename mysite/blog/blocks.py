@@ -32,13 +32,19 @@ class ParaBlock(blocks.RichTextBlock):
 
 
 class PicBlock(blocks.StructBlock):
-    image = ImageChooserBlock()
-    caption = blocks.CharBlock(required=False)
-    template = "blog/streams/pic_block.html"
+
+    pic_block = blocks.ListBlock(
+        blocks.StructBlock(
+            [
+                ("image", ImageChooserBlock(required=True)),
+                ("caption", CharBlock(required=False))
+            ]
+        )
+    )
 
     class Meta:
         icon = "image"
-
+        template = "blog/streams/pic_block.html"
 
 
 class DmyBlock(blocks.DateBlock):

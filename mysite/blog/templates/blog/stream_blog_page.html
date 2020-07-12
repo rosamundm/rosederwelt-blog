@@ -33,24 +33,27 @@
 
 {% with blocks=self.contents %}
 
-    {% for block in blocks %}
+   {% for block in blocks %}
         {% if block.block_type == "paragraph" %}
-           <div>
-               {{ block.value }}
+           <div class="para-block">
+             {{ block.value }}
            </div>
         {% elif block.block_type == "image" %}
-         <section> 
-          <div class="pic-block">
-              {% image block.image width-300 as my_image %}
+
+         <div class="pic-block"> 
+              {% image block.value.image width-300 as my_image %}
                  <img src="{{ my_image.url }}" class="img-responsive" />
                <p>{{ my_image.caption }}</p>
-          </div> 
-         </section>
+
+         </div>
+
+
+
 
         {% else %}
-        <section class="block-{{ block.block_type }}">
+        <div class="block-{{ block.block_type }}">
           {{ block }}
-        </section>   
+        </div>   
      {% endif %}
     {% endfor %}
 
