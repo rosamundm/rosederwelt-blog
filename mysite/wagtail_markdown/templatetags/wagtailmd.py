@@ -12,4 +12,5 @@ def markdown_filter(value):
     return markdown.markdown(
         value,
         output_format="html5"
+#        extensions = ["markdown.extensions.md_in_html",]
     )

@@ -6,10 +6,16 @@ from wagtail.admin.edit_handlers import (FieldPanel, FieldRowPanel,
 from wagtail.core import blocks
 from wagtail.core.blocks import (
     CharBlock, ChoiceBlock, RichTextBlock, StreamBlock,
-StructBlock, TextBlock, DateBlock, ListBlock
+StructBlock, TextBlock, FieldBlock, DateBlock, ListBlock
 )
 from wagtail.images.blocks import ImageChooserBlock
 from wagtailcodeblock.blocks import CodeBlock
+from markdown import markdown
+
+from wagtailmarkdownblock.blocks import MarkdownBlock
+
+
+from wagtail_markdown.utils import MarkdownPanel, MarkdownField
 
 
 class TitleBlock(blocks.CharBlock):
@@ -37,12 +43,13 @@ class ParaBlock(blocks.RichTextBlock):
 
 
 class PicBlock(blocks.StructBlock):
-    image = ImageChooserBlock(required=True),
-    #caption = CharBlock(required=False)
-    template = "blog/streams/pic_block.html"
+    image = ImageChooserBlock()
+    caption = CharBlock(required=False)
+   # template = "blog/streams/pic_block.html"
 
     class Meta:
         icon = "image"
+        template = "blog/streams/pic_block.html"
 
 
 class DmyBlock(blocks.DateBlock):
@@ -63,33 +70,19 @@ class CodingBlock(blocks.StructBlock):
     class Meta:
         icon = "code"
         template = "blog/streams/code_block.html"
+"""
+# in construction:
+class MDBlock(blocks.TextBlock):
+    md = MarkdownField()
+    class Meta:
+        icon = "wagtail-inverse"
+        template = "blog/streams/md_block.html"
 
-
+"""
 # all blocks put together in one stream for use in blog/models:
 class MyStream(blocks.StreamBlock):
     paragraph = ParaBlock()
     image = PicBlock()
     code = CodeBlock()
-
-
-
-"""new"""
-
-class ColumnBlock(blocks.StreamBlock):
-    heading = blocks.CharBlock(classname="full title")
-    paragraph = blocks.RichTextBlock()
-    image = ImageChooserBlock()
-
-    class Meta:
-        template = 'blog/streams/column.html'
-
-
-class TwoColumnBlock(blocks.StructBlock):
-
-    left_column = ColumnBlock(icon='arrow-right', label='Left column content')
-    right_column = ColumnBlock(icon='arrow-right', label='Right column content')
-
-    class Meta:
-        template = 'blog/streams/two_column_block.html'
-        icon = 'placeholder'
-        label = 'Two Columns'
+#    md = MarkdownBlock()
+  

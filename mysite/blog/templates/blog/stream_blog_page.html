@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 
-{% load static wagtailcore_tags wagtailimages_tags wagtailcodeblock_tags %}
+{% load static wagtailcore_tags wagtailimages_tags wagtailcodeblock_tags wagtailmd %}
 
 
 <!-- for WagtailCodeBlock: -->
 <script src="{% static 'js/prism.js' %}" type="text/javascript"></script>
 <link rel="stylesheet" href="{% static 'css/prism-synthwave84.css' %}" type="text/css">
+
 
 {% load_prism_theme %}
 
@@ -38,13 +39,14 @@
            <div class="para-block">
              {{ block.value }}
            </div>
-        {% elif block.block_type == "image" %}
-          {% image block.value width-900 class="img-responsive" %}
-
+        {% elif block.block_type == "image" %}       
+             {% image block.value width-900 class="img-responsive" %}
+        {% elif block.block_type == "md" %}
+             {{ value|markdown|safe })      
         {% else %}
-        <div class="block-{{ block.block_type }}">
-          {{ block }}
-        </div>   
+            <div class="block-{{ block.block_type }}">
+             {{ block }}
+            </div>   
      {% endif %}
     {% endfor %}
 

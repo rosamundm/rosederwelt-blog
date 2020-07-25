@@ -9,6 +9,6 @@ def editor_js():
 
 @hooks.register("insert_editor_css")
 def editor_css():
-    s = "<link rel='stylesheet' href='{0}wagtailmd/css/simplemde.css'>"
+    s = "<link rel='stylesheet' href='{0}wagtailmd/css/simplemde.min.css'>"
     s += "<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css'>"
     return s.format(settings.STATIC_URL)

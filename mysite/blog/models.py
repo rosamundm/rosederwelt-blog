@@ -16,9 +16,13 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index
 from wagtail.snippets.models import register_snippet
 
-from .blocks import MyStream, ColumnBlock, TwoColumnBlock
+from .blocks import MyStream
+from wagtail_markdown.utils import MarkdownPanel, MarkdownField
 
-from wagtail_markdown.utils import MarkdownField, MarkdownPanel
+from markdown import markdown
+
+
+from wagtailmarkdownblock.blocks import MarkdownBlock
 
 
 class TextPage(Page):
@@ -114,56 +118,6 @@ class StreamBlogPage(BlogPage):
         verbose_name = "Stream blog page"
 
 
-"""
-
-# custom markdown page:
-
-class MarkdownBlogPage(BlogPage):
-    template = "blog/markdown_blog_page.html"
-
-    md_body = MarkdownField()
-    
-    content_panels = Page.content_panels + [
-        MultiFieldPanel([
-           FieldPanel('date'),
-           FieldPanel('tags'),
-           FieldPanel('categories', widget=forms.CheckboxSelectMultiple)],
-           heading = "Blog information"),
-        MarkdownPanel("md_body"),
-    ]
-
-    class Meta:
-        verbose_name = "Markdown blog page"
-
-
-
-# basic md page:
-class MarkdownPage(Page):
-    body = MarkdownField()
-    
-    content_panels = Page.content_panels + [
-        MarkdownPanel("body"),
-    ]
-
-
-
-class LandingPage(Page):
-    body = StreamField([
-        ("heading", blocks.CharBlock(classname="full title")),
-        ("paragraph", blocks.RichTextBlock()),
-        ("image", ImageChooserBlock(icon="image")),
-        ("two_columns", TwoColumnBlock()),
-    ],null=True,blank=True)
-
-    content_panels = Page.content_panels + [
-        StreamFieldPanel("body"),
-    ]
-
-
-"""
-
-
-
 @register_snippet
 class BlogCategory(models.Model):
     name = models.CharField(max_length=255)
@@ -180,5 +134,3 @@ class BlogCategory(models.Model):
     def __str__(self):
         return self.name
 
-    class Meta:
-       verbose_name_plural = 'categories'
