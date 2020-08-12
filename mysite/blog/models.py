@@ -118,6 +118,24 @@ class StreamBlogPage(BlogPage):
         verbose_name = "Stream blog page"
 
 
+class StreamTextPage(Page):
+    template = "blog/stream_text_page.html"
+    body = RichTextField(blank=True)
+    contents = StreamField(
+        MyStream(),
+        verbose_name = "My Stream",
+        blank=True,
+        null=True,
+    )
+
+    content_panels = Page.content_panels + [
+        FieldPanel('body', classname="full"),
+        StreamFieldPanel("contents"),
+    ]
+
+
+
+
 @register_snippet
 class BlogCategory(models.Model):
     name = models.CharField(max_length=255)

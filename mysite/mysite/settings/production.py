@@ -15,11 +15,11 @@ except ImportError:
 SECRET_KEY = os.environ['SECRET_KEY']
 
 
-ALLOWED_HOSTS = '.rosederwelt.com'
+ALLOWED_HOSTS = 'rosederwelt.com'
 #ALLOWED_HOSTS = os.environ('ALLOWED_HOSTS').split.(',')
 
 
-# uncomment before deployment:
+# set these to False in development, True in production:
 
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True

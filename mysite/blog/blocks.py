@@ -13,7 +13,6 @@ from wagtail.images.blocks import ImageChooserBlock
 from wagtailcodeblock.blocks import CodeBlock
 #from wagtail_markdown.utils import MarkdownPanel, MarkdownField
 
-
 class TitleBlock(blocks.CharBlock):
     title = CharBlock(
         classname="post_title",
@@ -40,8 +39,7 @@ class HTMLBlock(blocks.RawHTMLBlock):
     html = RawHTMLBlock()
 
     class Meta:
-        icon = "wagtail-inverse"
-        verbose_name = "HTML"
+        icon = "form"
         # no template needed
 
 class PicBlock(StructBlock):
@@ -56,11 +54,13 @@ class PicBlock(StructBlock):
 class DmyBlock(blocks.DateBlock):
     date = DateBlock(
         classname="post_date",
-        required=False,
-        template = "blog/ streams/date_block.html"
+        required=False
     )
     format = "%d %B %Y"
-
+    
+    class Meta:
+        icon = "date" 
+        template = "blog/ streams/date_block.html"
 
 class CodingBlock(blocks.StructBlock):
     code = CodeBlock(classname = "post_code", required=False)
@@ -72,10 +72,8 @@ class CodingBlock(blocks.StructBlock):
         template = "blog/streams/code_block.html"
 
 
-# all blocks put together in one stream for use in blog/models:
-
+# blocks put together in one stream, to be imported into models:
 class MyStream(blocks.StreamBlock):
     paragraph = ParaBlock()
-  #  image = PicBlock()
     code = CodeBlock()  
     html = HTMLBlock()

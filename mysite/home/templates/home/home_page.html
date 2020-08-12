@@ -1,27 +1,25 @@
 <!doctype html>
 
-{% extends "base.html" %}
-
-{% load static wagtailcore_tags wagtailimages_tags %}
-
-{% block body_class %}template-homepage{% endblock %}
+{% load static wagtailcore_tags %}
 
 <head>
-  <!--bootstrap-->
-  <link rel="stylesheet" href="{% static 'css/blog-post.css' %}">
+  <link rel="stylesheet" href="{% static 'home/css/home_page.css' %}">
   <!--meta tags-->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Rose der Welt</title>
-
 </head>
 
+<body>
+  <div class="container">
+    <div class="center-box">
+      <h1>Rose der Welt</h1>
+      <a href="https://rosederwelt.com/blog"><img src="https://res.cloudinary.com/dihfichjz/image/upload/v1595772223/aldeburgh-suffolk_lwndos.png" alt="Aldeburgh, Suffolk, UK"/></a>
+      <br>
+      <p>a blog about code & prose</p>
+    </div>
+  </div>
+</body>
+</html>
 
-{% block content %}
-
-<div class="body" align="center">
- <a href="https://rosederwelt.com/blog">{{ page.body|richtext }}</a>
-</div>
-
-{% endblock %}
 
