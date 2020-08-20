@@ -13,7 +13,7 @@
         <small>
 	   category is ~ 
             {% for tag in page.tags.all %}
-              <a href="{% slugurl 'tags' %}?tag={{ tag }}">{{ tag }}</a> ~
+              <a href="/tagged-posts/?tag={{ tag }}">{{ tag }}</a> ~
             {% endfor %}
         </small>
     </div>

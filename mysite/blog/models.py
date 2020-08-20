@@ -18,18 +18,14 @@ from wagtail.snippets.models import register_snippet
 
 from .blocks import MyStream
 from wagtail_markdown.utils import MarkdownPanel, MarkdownField
-
 from markdown import markdown
-
-
 from wagtailmarkdownblock.blocks import MarkdownBlock
-
 
 class TextPage(Page):
     body = RichTextField(blank=True)
 
     content_panels = Page.content_panels + [
-        FieldPanel('body', classname="full"),
+        FieldPanel("body", classname="full"),
     ]
 
 # models for BlogIndexPage and BlogPageTag need to come before BlogPage
@@ -38,7 +34,7 @@ class BlogIndexPage(Page):
 
     def get_context(self, request, *args, **kwargs):
         context = super().get_context(request, *args, **kwargs)
-        blogpages = BlogPage.objects.live().public().order_by('-date')
+        blogpages = BlogPage.objects.live().public().order_by("-date")
 
         if request.GET.get('tag', None):
             tags = request.GET.get('tag')
@@ -46,11 +42,10 @@ class BlogIndexPage(Page):
 
         context['blogpages'] = blogpages
         return context
-
+ 
     content_panels = Page.content_panels + [
         FieldPanel('body', classname="full")
     ]
-
 
 
 class BlogPageTag(TaggedItemBase):
@@ -61,16 +56,12 @@ class BlogPageTag(TaggedItemBase):
     )
 
 
-# model for BlogPage itself:
+# model for regular BlogPage, no streamfields
 class BlogPage(Page):
     date = models.DateField("Post date")
     body = RichTextField(blank=True)
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
-    categories = ParentalManyToManyField('blog.BlogCategory', blank=True)
-
-#    search_fields = Page.search_fields + [
- #       index.SearchField('body'),
-  #  ]
+    categories = ParentalManyToManyField("blog.BlogCategory", blank=True)
 
     content_panels = Page.content_panels + [
         MultiFieldPanel([
@@ -82,16 +73,14 @@ class BlogPage(Page):
     ]
 
 
-class BlogTagIndexPage(Page):
-    def get_context(self, request):
-
-        # filter by tag
-        tag = request.GET.get('tag')
-        blogpages = BlogPage.objects.filter(tags__name=tag)
-
-        # update template context
-        context = super().get_context(request)
-        context['blogpages'] = blogpages
+class BlogTagIndexPage(Page): 
+    # essentially stands in for a Django FBV:
+    def get_context(self, request, *args, **kwargs):
+        # filter posts by tag:
+        tag = request.GET.get("tag")
+        blogpages = BlogPage.objects.live().filter(tags__name=tag).order_by("-date")
+        context = super().get_context(request, *args, **kwargs)
+        context["blogpages"] = blogpages
         return context
 
 
@@ -135,20 +124,19 @@ class StreamTextPage(Page):
 
 
 
-
 @register_snippet
 class BlogCategory(models.Model):
     name = models.CharField(max_length=255)
-    icon = models.ForeignKey(
-        'wagtailimages.Image', null=True, blank=True,
-        on_delete=models.SET_NULL, related_name='+'
-    )
+    slug = models.SlugField(unique=True, max_length=80, null=True)
 
     panels = [
-        FieldPanel('name'),
-        ImageChooserPanel('icon'),
+        FieldPanel("name"),
+        FieldPanel("slug"),
     ]
 
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = "Category"
+        verbose_name = "Categories"

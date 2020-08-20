@@ -41,6 +41,7 @@ class HTMLBlock(blocks.RawHTMLBlock):
     class Meta:
         icon = "form"
         # no template needed
+    
 
 class PicBlock(StructBlock):
     image = ImageChooserBlock(required=False)
@@ -75,5 +76,5 @@ class CodingBlock(blocks.StructBlock):
 # blocks put together in one stream, to be imported into models:
 class MyStream(blocks.StreamBlock):
     paragraph = ParaBlock()
-    code = CodeBlock()  
+    code = CodeBlock()
     html = HTMLBlock()

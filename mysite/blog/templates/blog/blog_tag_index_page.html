@@ -1,24 +1,22 @@
 {% extends "base.html" %}
 {% load wagtailcore_tags %}
 
+{% block body_class %}template-blogtagindexpage{% endblock %}
+
 {% block content %}
 
   {% if request.GET.tag|length %}
-      <h4>Showing pages tagged "{{ request.GET.tag }}"</h4>
+    <h4>Showing all posts tagged "{{ request.GET.tag }}":</h4>
   {% endif %}
 
+  <br>
+
   {% for blogpage in blogpages %}
-
-        <p>
-            <strong><a href="{% pageurl blogpage %}">{{ blogpage.title }}</a></strong><br />
-            <small>Revised: {{ blogpage.latest_revision_created_at }}</small><br />
-            {% if blogpage.author %}
-              <p>By {{ blogpage.author.profile }}</p>
-            {% endif %}
-        </p>
-
+    <p>
+     <a href="{% pageurl blogpage %}">{{ blogpage.title }}</a>
+    </p>
   {% empty %}
-      No pages found with that tag.
+    Nothing to see here.
   {% endfor %}
-
+    
 {% endblock %}
