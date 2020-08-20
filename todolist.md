@@ -1,6 +1,6 @@
 - add SEO
 - add search function
-- add blog tag index pages
+- ~~add blog tag index pages~~
 - ~~add StreamFields to a (new) blog page model~~
 - ~~set up image StreamField block~~
 - set up a syntax higlighter I like
