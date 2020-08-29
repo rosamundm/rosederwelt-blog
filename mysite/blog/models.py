@@ -72,6 +72,9 @@ class BlogPage(Page):
         FieldPanel("body"),  
     ]
 
+    @property
+    def preview_modes(self):
+        return Page.DEFAULT_PREVIEW_MODES
 
 class BlogTagIndexPage(Page): 
     # essentially stands in for a Django FBV:
