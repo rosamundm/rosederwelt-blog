@@ -55,41 +55,52 @@
        <body class="{% block body_class %}{% endblock %}">
                {% wagtailuserbar %}
 
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-         <div class="btn-group">
-          <button class="btn btn-secondary btn-lg" type="button">
-           <a class="navbar-brand" href="http://rosederwelt.com/">Rose der Welt</a>
-          </button>
-	  <button type="button" class="btn btn-lg btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <span class="sr-only">Toggle Dropdown</span>
-  </button>
-  <div class="dropdown-menu">
-   <a class="dropdown-item" href="https://rosederwelt.com/about-me">About</a>          
-   <a class="dropdown-item" href="https://rosederwelt.com/blog">Blog</a>
-   <a class="dropdown-item" href="https://rosederwelt.com/reading">Reading</a>
-   <a class="dropdown-item" href="https://rosamundmather.com">Work</a>
-  </div>
-</div>
 
-<!--
 
- <div class="collapse navbar-collapse" id="navbarColor01">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="https://rosederwelt.com/about">{ ABOUT ME }</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="https://rosederwelt.com/reading">{ WHAT I'M READING }</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="https://rosederwelt.com/vegan-berlin">{ VEGAN BERLIN }</a>
-            </li>
-          </ul>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="https://rosederwelt.com">Rose der Welt</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            about
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/about-me">about me</a>
+            <a class="dropdown-item" href="/about-blog">about the blog</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/blog">blog</a>
+        </li>
+
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            pages
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/reading">what i'm reading</a>
+<!-- TBA:            <a class="dropdown-item" href="#">vegan berlin</a>      
+            <a class="dropdown-item" href="#">programming resources</a> -->
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="https://rosamundmather.com">work</a>
+        </li>
+
+      </ul>
  
-            -->
 
 
-<!--search bar:
+<!--search bar TBA:
 
 	<ul class="navright">
           <form class="form-inline my-2 my-lg-0">
@@ -103,6 +114,7 @@
 
         </div>
       </nav>
+
 <br>
 <br>
 
