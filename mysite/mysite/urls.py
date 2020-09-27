@@ -9,16 +9,13 @@ from wagtail.documents import urls as wagtaildocs_urls
 from django.views.generic.base import RedirectView
 
 urlpatterns = [
-    url(r'^OPjdg34dgfn28/', admin.site.urls), #default = r'^django-admin/'
-
-    url(r'^admin/', include(wagtailadmin_urls)), #default = r'^admin/'
-    url(r'^documents/', include(wagtaildocs_urls)),
-
+    url(r"^OPjdg34dgfn28/", admin.site.urls),  # default = r'^django-admin/'
+    url(r"^admin/", include(wagtailadmin_urls)),  # default = r'^admin/'
+    url(r"^documents/", include(wagtaildocs_urls)),
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's page serving mechanism. This should be the last pattern in
     # the list:
-    url(r'', include(wagtail_urls)),
-
+    url(r"", include(wagtail_urls)),
     # Alternatively, if you want Wagtail pages to be served from a subpath
     # of your site, rather than the site root:
     #    url(r'^pages/', include(wagtail_urls)),
@@ -34,8 +31,8 @@ if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
-#for 404 error page
-handler404 = 'blog.views.handler404'
+# for 404 error page
+handler404 = "blog.views.handler404"
 
-#for 500 error page
-#handler500 = 'blog.views.handler500'
+# for 500 error page
+# handler500 = 'blog.views.handler500'

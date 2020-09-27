@@ -11,7 +11,12 @@ from wagtail.images.blocks import ImageChooserBlock
 from wagtailcodeblock.blocks import CodeBlock
 
 from wagtail.core.fields import StreamField, RichTextField
-from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel, StreamFieldPanel
+from wagtail.admin.edit_handlers import (
+    FieldPanel,
+    InlinePanel,
+    MultiFieldPanel,
+    StreamFieldPanel,
+)
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index
 from wagtail.snippets.models import register_snippet
@@ -21,12 +26,14 @@ from wagtail_markdown.utils import MarkdownPanel, MarkdownField
 from markdown import markdown
 from wagtailmarkdownblock.blocks import MarkdownBlock
 
+
 class TextPage(Page):
     body = RichTextField(blank=True)
 
     content_panels = Page.content_panels + [
         FieldPanel("body", classname="full"),
     ]
+
 
 # models for BlogIndexPage and BlogPageTag need to come before BlogPage
 class BlogIndexPage(Page):
@@ -36,23 +43,19 @@ class BlogIndexPage(Page):
         context = super().get_context(request, *args, **kwargs)
         blogpages = BlogPage.objects.live().public().order_by("-date")
 
-        if request.GET.get('tag', None):
-            tags = request.GET.get('tag')
+        if request.GET.get("tag", None):
+            tags = request.GET.get("tag")
             blogpages = blogpages.filter(tags__slug__in=[tags])
 
-        context['blogpages'] = blogpages
+        context["blogpages"] = blogpages
         return context
- 
-    content_panels = Page.content_panels + [
-        FieldPanel('body', classname="full")
-    ]
+
+    content_panels = Page.content_panels + [FieldPanel("body", classname="full")]
 
 
 class BlogPageTag(TaggedItemBase):
     content_object = ParentalKey(
-        'BlogPage',
-        related_name='tagged_items',
-        on_delete=models.CASCADE
+        "BlogPage", related_name="tagged_items", on_delete=models.CASCADE
     )
 
 
@@ -64,19 +67,23 @@ class BlogPage(Page):
     categories = ParentalManyToManyField("blog.BlogCategory", blank=True)
 
     content_panels = Page.content_panels + [
-        MultiFieldPanel([
-            FieldPanel('date'),
-            FieldPanel('tags'),
-            FieldPanel('categories', widget=forms.CheckboxSelectMultiple),
-        ], heading="Blog information"),
-        FieldPanel("body"),  
+        MultiFieldPanel(
+            [
+                FieldPanel("date"),
+                FieldPanel("tags"),
+                FieldPanel("categories", widget=forms.CheckboxSelectMultiple),
+            ],
+            heading="Blog information",
+        ),
+        FieldPanel("body"),
     ]
 
     @property
     def preview_modes(self):
         return Page.DEFAULT_PREVIEW_MODES
 
-class BlogTagIndexPage(Page): 
+
+class BlogTagIndexPage(Page):
     # essentially stands in for a Django FBV:
     def get_context(self, request, *args, **kwargs):
         # filter posts by tag:
@@ -92,17 +99,20 @@ class StreamBlogPage(BlogPage):
 
     contents = StreamField(
         MyStream(),
-        verbose_name = "My Stream",
+        verbose_name="My Stream",
         blank=True,
-	null=True,
+        null=True,
     )
 
     content_panels = Page.content_panels + [
-        MultiFieldPanel([
-           FieldPanel('date'),
-           FieldPanel('tags'),
-           FieldPanel('categories', widget=forms.CheckboxSelectMultiple)],
-           heading = "Blog information"),
+        MultiFieldPanel(
+            [
+                FieldPanel("date"),
+                FieldPanel("tags"),
+                FieldPanel("categories", widget=forms.CheckboxSelectMultiple),
+            ],
+            heading="Blog information",
+        ),
         StreamFieldPanel("contents"),
     ]
 
@@ -115,16 +125,15 @@ class StreamTextPage(Page):
     body = RichTextField(blank=True)
     contents = StreamField(
         MyStream(),
-        verbose_name = "My Stream",
+        verbose_name="My Stream",
         blank=True,
         null=True,
     )
 
     content_panels = Page.content_panels + [
-        FieldPanel('body', classname="full"),
+        FieldPanel("body", classname="full"),
         StreamFieldPanel("contents"),
     ]
-
 
 
 @register_snippet

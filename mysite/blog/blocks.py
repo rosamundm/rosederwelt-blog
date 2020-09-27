@@ -1,17 +1,31 @@
-from wagtail.admin.edit_handlers import (FieldPanel, FieldRowPanel,
-                                         InlinePanel, MultiFieldPanel,
-                                         PageChooserPanel, StreamFieldPanel)
+from wagtail.admin.edit_handlers import (
+    FieldPanel,
+    FieldRowPanel,
+    InlinePanel,
+    MultiFieldPanel,
+    PageChooserPanel,
+    StreamFieldPanel,
+)
 
 
 from wagtail.core import blocks
 from wagtail.core.blocks import (
-    CharBlock, ChoiceBlock, RichTextBlock, StreamBlock,
-    StructBlock, TextBlock, RawHTMLBlock, 
-    FieldBlock, DateBlock, ListBlock
-    )
+    CharBlock,
+    ChoiceBlock,
+    RichTextBlock,
+    StreamBlock,
+    StructBlock,
+    TextBlock,
+    RawHTMLBlock,
+    FieldBlock,
+    DateBlock,
+    ListBlock,
+)
 from wagtail.images.blocks import ImageChooserBlock
 from wagtailcodeblock.blocks import CodeBlock
-#from wagtail_markdown.utils import MarkdownPanel, MarkdownField
+
+# from wagtail_markdown.utils import MarkdownPanel, MarkdownField
+
 
 class TitleBlock(blocks.CharBlock):
     title = CharBlock(
@@ -22,6 +36,7 @@ class TitleBlock(blocks.CharBlock):
     class Meta:
         icon = "title"
         template = "blog/streams/title_block.html"
+
 
 class ParaBlock(blocks.RichTextBlock):
     paragraph = RichTextBlock(
@@ -41,7 +56,7 @@ class HTMLBlock(blocks.RawHTMLBlock):
     class Meta:
         icon = "form"
         # no template needed
-    
+
 
 class PicBlock(StructBlock):
     image = ImageChooserBlock(required=False)
@@ -50,21 +65,19 @@ class PicBlock(StructBlock):
     class Meta:
         icon = "image"
         template = "blog/streams/pic_block.html"
-      
+
 
 class DmyBlock(blocks.DateBlock):
-    date = DateBlock(
-        classname="post_date",
-        required=False
-    )
+    date = DateBlock(classname="post_date", required=False)
     format = "%d %B %Y"
-    
+
     class Meta:
-        icon = "date" 
+        icon = "date"
         template = "blog/ streams/date_block.html"
 
+
 class CodingBlock(blocks.StructBlock):
-    code = CodeBlock(classname = "post_code", required=False)
+    code = CodeBlock(classname="post_code", required=False)
     language = blocks.ChoiceBlock(default="python")
     text = blocks.TextBlock()
 

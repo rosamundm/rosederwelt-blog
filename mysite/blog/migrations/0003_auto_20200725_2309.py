@@ -10,13 +10,61 @@ import wagtail.images.blocks
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('blog', '0002_auto_20200725_2255'),
+        ("blog", "0002_auto_20200725_2255"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='streamblogpage',
-            name='contents',
-            field=wagtail.core.fields.StreamField([('paragraph', blog.blocks.ParaBlock()), ('image', wagtail.core.blocks.StructBlock([('image', wagtail.images.blocks.ImageChooserBlock()), ('caption', wagtail.core.blocks.CharBlock())])), ('code', wagtail.core.blocks.StructBlock([('language', wagtail.core.blocks.ChoiceBlock(choices=[('bash', 'Bash/Shell'), ('css', 'CSS'), ('diff', 'diff'), ('html', 'HTML'), ('javascript', 'Javascript'), ('json', 'JSON'), ('python', 'Python'), ('scss', 'SCSS'), ('yaml', 'YAML')], help_text='Coding language', identifier='language', label='Language')), ('code', wagtail.core.blocks.TextBlock(identifier='code', label='Code'))]))], blank=True, null=True, verbose_name='My Stream'),
+            model_name="streamblogpage",
+            name="contents",
+            field=wagtail.core.fields.StreamField(
+                [
+                    ("paragraph", blog.blocks.ParaBlock()),
+                    (
+                        "image",
+                        wagtail.core.blocks.StructBlock(
+                            [
+                                ("image", wagtail.images.blocks.ImageChooserBlock()),
+                                ("caption", wagtail.core.blocks.CharBlock()),
+                            ]
+                        ),
+                    ),
+                    (
+                        "code",
+                        wagtail.core.blocks.StructBlock(
+                            [
+                                (
+                                    "language",
+                                    wagtail.core.blocks.ChoiceBlock(
+                                        choices=[
+                                            ("bash", "Bash/Shell"),
+                                            ("css", "CSS"),
+                                            ("diff", "diff"),
+                                            ("html", "HTML"),
+                                            ("javascript", "Javascript"),
+                                            ("json", "JSON"),
+                                            ("python", "Python"),
+                                            ("scss", "SCSS"),
+                                            ("yaml", "YAML"),
+                                        ],
+                                        help_text="Coding language",
+                                        identifier="language",
+                                        label="Language",
+                                    ),
+                                ),
+                                (
+                                    "code",
+                                    wagtail.core.blocks.TextBlock(
+                                        identifier="code", label="Code"
+                                    ),
+                                ),
+                            ]
+                        ),
+                    ),
+                ],
+                blank=True,
+                null=True,
+                verbose_name="My Stream",
+            ),
         ),
     ]
