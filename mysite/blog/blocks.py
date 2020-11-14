@@ -6,8 +6,6 @@ from wagtail.admin.edit_handlers import (
     PageChooserPanel,
     StreamFieldPanel,
 )
-
-
 from wagtail.core import blocks
 from wagtail.core.blocks import (
     CharBlock,
@@ -23,13 +21,12 @@ from wagtail.core.blocks import (
 )
 from wagtail.images.blocks import ImageChooserBlock
 from wagtailcodeblock.blocks import CodeBlock
-
-# from wagtail_markdown.utils import MarkdownPanel, MarkdownField
+from django.utils.translation import gettext_lazy as _
 
 
 class TitleBlock(blocks.CharBlock):
     title = CharBlock(
-        classname="post_title",
+        form_classname="post_title",
         required=False,
     )
 
@@ -40,7 +37,7 @@ class TitleBlock(blocks.CharBlock):
 
 class ParaBlock(blocks.RichTextBlock):
     paragraph = RichTextBlock(
-        classname="post_text",
+        form_classname="post_text",
         required=False,
     )
     editor = "default"
@@ -59,16 +56,36 @@ class HTMLBlock(blocks.RawHTMLBlock):
 
 
 class PicBlock(StructBlock):
-    image = ImageChooserBlock(required=False)
-    caption = CharBlock(required=False)
+    image = ImageChooserBlock(label=_("Image"))
+    caption = CharBlock(required=False, label=_("Caption"))
+    float = blocks.ChoiceBlock(
+        required=False,
+        choices=[
+            ("right", _("Right")),
+            ("left", _("Left")), 
+            ("center", _("Center")),
+        ],
+        default="center",
+        label=_("Float")
+    )
+    size = blocks.ChoiceBlock(
+        required=False,
+        choices=[
+            ("small", _("Small")),
+            ("medium", _("Medium")),
+            ("large", _("Large")),
+        ],
+        default="medium",
+        label=_("Size")
+    )
 
     class Meta:
         icon = "image"
-        template = "blog/streams/pic_block.html"
+        # no template needed
 
 
 class DmyBlock(blocks.DateBlock):
-    date = DateBlock(classname="post_date", required=False)
+    date = DateBlock(form_classname="post_date", required=False)
     format = "%d %B %Y"
 
     class Meta:
@@ -77,7 +94,7 @@ class DmyBlock(blocks.DateBlock):
 
 
 class CodingBlock(blocks.StructBlock):
-    code = CodeBlock(classname="post_code", required=False)
+    code = CodeBlock(form_classname="post_code", required=False)
     language = blocks.ChoiceBlock(default="python")
     text = blocks.TextBlock()
 
@@ -91,3 +108,4 @@ class MyStream(blocks.StreamBlock):
     paragraph = ParaBlock()
     code = CodeBlock()
     html = HTMLBlock()
+    image = PicBlock()
