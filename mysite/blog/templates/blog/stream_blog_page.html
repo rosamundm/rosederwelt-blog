@@ -42,7 +42,22 @@
              {{ block.value }}
            </div>
         {% elif block.block_type == "image" %}       
-             {% image block.value width-900 class="img-responsive" %}
+         <div class="block-{{ block.block_type }}-{{ block.value.float }}">  
+            {% if block.value.size == "small" %}
+                {% image block.value.image width-240 class="img-fluid" %}
+            {% elif block.value.size == "medium" %}
+                {% image block.value.image width-480 class="img-fluid" %}
+            {% else %}
+                {% image block.value.image width-2400 class="img-fluid" %}
+            {% endif %}
+            <br><br>
+           <div class="caption">      
+            <small>
+            {{ block.value.caption }}
+           </small>
+           <br><br>
+            </div>
+          </div>
         {% elif block.block_type == "md" %}
              {{ value|markdown|safe })      
         {% else %}

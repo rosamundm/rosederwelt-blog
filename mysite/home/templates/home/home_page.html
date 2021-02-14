@@ -2,6 +2,8 @@
 
 {% load static wagtailcore_tags %}
 
+{% load static wagtailuserbar %}
+
 
 <head>
   <link rel="stylesheet" href="{% static 'home/css/home_page.css' %}">
@@ -24,3 +26,13 @@
 </html>
 
 
+<body class="{% block body_class %}{% endblock %}">
+    {% wagtailuserbar %}
+
+    {# Global javascript #}
+    <script type="text/javascript" src="{% static 'js/mysite.js' %}"></script>
+
+    {% block extra_js %}
+        {# Override this in templates to add extra javascript #}
+    {% endblock %}
+</body>

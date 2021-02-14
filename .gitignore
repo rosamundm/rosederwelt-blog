@@ -5,6 +5,7 @@ venv
 *.pyc
 __pycache__
 media/
+mysite.css.save
 wagtaildb.bak
 
 
