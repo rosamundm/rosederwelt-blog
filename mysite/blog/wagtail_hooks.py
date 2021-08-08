@@ -5,6 +5,7 @@ from wagtail.admin.rich_text.converters.html_to_contentstate import (
 from wagtail.core import hooks
 from django.http import HttpResponseRedirect
 
+
 @hooks.register("register_rich_text_features")
 def register_mark_feature(features):
     """
@@ -37,7 +38,7 @@ def register_mark_feature(features):
 @hooks.register("register_rich_text_features")
 def register_centertext_feature(features):
     """
-    add centre-align text option to editor toolbar 
+    add centre-align text option to editor toolbar
     """
     feature_name = "center"
     type_ = "CENTERTEXT"
@@ -78,5 +79,3 @@ def redirect_after_page_created(request, page):
     """
     if request.user.is_superuser:
         return HttpResponseRedirect("/admin/pages" + str(page.id) + "/edit/")
-
-

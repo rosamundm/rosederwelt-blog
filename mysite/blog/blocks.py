@@ -62,11 +62,11 @@ class PicBlock(StructBlock):
         required=False,
         choices=[
             ("right", _("Right")),
-            ("left", _("Left")), 
+            ("left", _("Left")),
             ("center", _("Center")),
         ],
         default="center",
-        label=_("Float")
+        label=_("Float"),
     )
     size = blocks.ChoiceBlock(
         required=False,
@@ -76,7 +76,7 @@ class PicBlock(StructBlock):
             ("large", _("Large")),
         ],
         default="medium",
-        label=_("Size")
+        label=_("Size"),
     )
 
     class Meta:

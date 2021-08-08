@@ -1,5 +1,7 @@
 from django import forms
 from django.db import models
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 # from modelcluster.fields import ParentalKey, ParentalManyToManyField
 # from modelcluster.contrib.taggit import ClusterTaggableManager
@@ -31,7 +33,3 @@ class HomePage(Page):
         FieldPanel("body", classname="full"),
         StreamFieldPanel("contents"),
     ]
-
-    def copyright_context(request):
-        current_datetime = datetime.datetime.now()
-        return {"current_year": current_datetime.year}
