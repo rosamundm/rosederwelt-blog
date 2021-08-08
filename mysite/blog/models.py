@@ -5,29 +5,25 @@ from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from taggit.models import TaggedItemBase
 
-from wagtail.core.models import Page, Orderable
-from wagtail.core import blocks
-from wagtail.images.blocks import ImageChooserBlock
-from wagtailcodeblock.blocks import CodeBlock
+from wagtail.core.models import Page
 
 from wagtail.core.fields import StreamField, RichTextField
 from wagtail.admin.edit_handlers import (
     FieldPanel,
-    InlinePanel,
     MultiFieldPanel,
     StreamFieldPanel,
 )
-from wagtail.images.edit_handlers import ImageChooserPanel
-from wagtail.search import index
+# from wagtail.images.edit_handlers import ImageChooserPanel
+# from wagtail.search import index
 from wagtail.snippets.models import register_snippet
 
 from .blocks import MyStream
-from wagtail_markdown.utils import MarkdownPanel, MarkdownField
-from markdown import markdown
-from wagtailmarkdownblock.blocks import MarkdownBlock
 
 
 class TextPage(Page):
+    """
+    Basic text page model, suitable for non-blog post pages.
+    """
     body = RichTextField(blank=True)
 
     content_panels = Page.content_panels + [
@@ -35,11 +31,16 @@ class TextPage(Page):
     ]
 
 
-# models for BlogIndexPage and BlogPageTag need to come before BlogPage
 class BlogIndexPage(Page):
+    """
+    Return a list of blog posts.
+    """
     body = RichTextField(blank=True)
 
     def get_context(self, request, *args, **kwargs):
+        """
+        In Wagtail, get_context() essentially stands in for a Django FBV.
+        """
         context = super().get_context(request, *args, **kwargs)
         blogpages = BlogPage.objects.live().public().order_by("-date")
 
@@ -59,8 +60,10 @@ class BlogPageTag(TaggedItemBase):
     )
 
 
-# model for regular BlogPage, no streamfields
 class BlogPage(Page):
+    """
+    Regular blog post page (no streamfields).
+    """
     date = models.DateField("Post date")
     body = RichTextField(blank=True)
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
@@ -84,9 +87,13 @@ class BlogPage(Page):
 
 
 class BlogTagIndexPage(Page):
-    # essentially stands in for a Django FBV:
-    def get_context(self, request, *args, **kwargs):
-        # filter posts by tag:
+    """
+    Show all blog tags.
+    """
+    def get_context(self, request, *args, **kwargs): 
+        """
+        Filter posts by tag.
+        """
         tag = request.GET.get("tag")
         blogpages = BlogPage.objects.live().filter(tags__name=tag).order_by("-date")
         context = super().get_context(request, *args, **kwargs)
@@ -95,6 +102,9 @@ class BlogTagIndexPage(Page):
 
 
 class StreamBlogPage(BlogPage):
+    """
+    Blog post page with streamfield functionality.
+    """
     template = "blog/stream_blog_page.html"
 
     contents = StreamField(
@@ -121,6 +131,9 @@ class StreamBlogPage(BlogPage):
 
 
 class StreamTextPage(Page):
+    """
+    Text page with streamfield functionality.
+    """
     template = "blog/stream_text_page.html"
     body = RichTextField(blank=True)
     contents = StreamField(
@@ -138,6 +151,9 @@ class StreamTextPage(Page):
 
 @register_snippet
 class BlogCategory(models.Model):
+    """
+    Category for sorting blog posts.
+    """
     name = models.CharField(max_length=255)
     slug = models.SlugField(unique=True, max_length=80, null=True)
 
