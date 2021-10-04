@@ -1,4 +1,5 @@
 from django import forms
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db import models
 
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
@@ -13,6 +14,7 @@ from wagtail.admin.edit_handlers import (
     MultiFieldPanel,
     StreamFieldPanel,
 )
+
 # from wagtail.images.edit_handlers import ImageChooserPanel
 # from wagtail.search import index
 from wagtail.snippets.models import register_snippet
@@ -24,6 +26,7 @@ class TextPage(Page):
     """
     Basic text page model, suitable for non-blog post pages.
     """
+
     body = RichTextField(blank=True)
 
     content_panels = Page.content_panels + [
@@ -35,6 +38,7 @@ class BlogIndexPage(Page):
     """
     Return a list of blog posts.
     """
+
     body = RichTextField(blank=True)
 
     def get_context(self, request, *args, **kwargs):
@@ -43,6 +47,15 @@ class BlogIndexPage(Page):
         """
         context = super().get_context(request, *args, **kwargs)
         blogpages = BlogPage.objects.live().public().order_by("-date")
+        page = request.GET.get("page")
+        paginator = Paginator(blogpages, 5)
+
+        try:
+            blogpages = paginator.page(page)
+        except PageNotAnInteger:
+            blogpages = paginator.page(1)
+        except EmptyPage:
+            blogpages = paginator.page(paginator.num_pages)
 
         if request.GET.get("tag", None):
             tags = request.GET.get("tag")
@@ -64,6 +77,7 @@ class BlogPage(Page):
     """
     Regular blog post page (no streamfields).
     """
+
     date = models.DateField("Post date")
     body = RichTextField(blank=True)
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
@@ -90,7 +104,8 @@ class BlogTagIndexPage(Page):
     """
     Show all blog tags.
     """
-    def get_context(self, request, *args, **kwargs): 
+
+    def get_context(self, request, *args, **kwargs):
         """
         Filter posts by tag.
         """
@@ -105,6 +120,7 @@ class StreamBlogPage(BlogPage):
     """
     Blog post page with streamfield functionality.
     """
+
     template = "blog/stream_blog_page.html"
 
     contents = StreamField(
@@ -134,6 +150,7 @@ class StreamTextPage(Page):
     """
     Text page with streamfield functionality.
     """
+
     template = "blog/stream_text_page.html"
     body = RichTextField(blank=True)
     contents = StreamField(
@@ -154,6 +171,7 @@ class BlogCategory(models.Model):
     """
     Category for sorting blog posts.
     """
+
     name = models.CharField(max_length=255)
     slug = models.SlugField(unique=True, max_length=80, null=True)
 

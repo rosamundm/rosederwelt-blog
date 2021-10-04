@@ -8,26 +8,58 @@
 
 {% for post in blogpages %}
 
-    {% with post=post.specific %}
+  {% with post=post.specific %}
 
-      <h2><a href="{% pageurl post %}">{{ post.title|richtext }}</a></h2>
+    <h2><a href="{% pageurl post %}">{{ post.title|richtext }}</a></h2>
 
       {{ post.date }}
 
-      {% if post.tags.all.count %}
+    {% if post.tags.all.count %}
            
       <div class="tags">
         <small>
 	        category is ~ 
             {% for tag in post.tags.all %}
              <a href="/tagged-posts/?tag={{ tag }}">{{ tag }}</a> ~
-              {% endfor %}
+            {% endfor %}
         </small>
-            </div>
-        {% endif %}
-        <br>
-   {% endwith %}
+     </div>
+
+    {% endif %}
+     <br>
+  {% endwith %}
 
 {% endfor %}
+
+
+{# pagination: #}
+
+{% if blogpages.paginator.num_pages > 1 %}
+
+  <div class="pagination">
+    {% if blogpages.has_previous %}
+
+      <li class="page-item">
+        <a href="?page={{ blogpages.previous_page_number }}" class="page-link">
+          <span>newer posts</span>
+        </a>
+      </li>
+
+    {% endif %}
+
+    {% if blogpages.has_next %}
+
+      <li class="page-item">
+        <a href="?page={{ blogpages.next_page_number }}" class="page-link">
+          <span>older posts</span>
+        </a>
+      </li>
+      
+   {% endif %}
+
+  </div>
+  
+{% endif %}
+
 
 {% endblock %}
