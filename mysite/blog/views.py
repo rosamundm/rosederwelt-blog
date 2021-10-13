@@ -7,7 +7,7 @@ def handler404(request, template_name):
     return response
 
 
-def handler500(request, template_name="mynewwebsite/mysite/mysite/templates/500.html"):
-    response = render(request, "template_name")
+def handler500(request, template_name):
+    response = render("mynewwebsite/mysite/mysite/templates/500.html")
     response.status_code = 500
     return response

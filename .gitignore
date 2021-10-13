@@ -7,6 +7,8 @@ __pycache__
 media/
 mysite.css.save
 wagtaildb.bak
+.coverage
+.pre-commit-config.yaml
 
 
 node_modules  
