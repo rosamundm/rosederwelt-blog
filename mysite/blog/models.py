@@ -78,15 +78,17 @@ class BlogPage(Page):
     Regular blog post page (no streamfields).
     """
 
-    date = models.DateField("Post date")
     body = RichTextField(blank=True)
-    tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
     categories = ParentalManyToManyField("blog.BlogCategory", blank=True)
+    date = models.DateField("Post date")
+    last_modified = models.DateField("Last updated")
+    tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
 
     content_panels = Page.content_panels + [
         MultiFieldPanel(
             [
                 FieldPanel("date"),
+                FieldPanel("last_modified"),
                 FieldPanel("tags"),
                 FieldPanel("categories", widget=forms.CheckboxSelectMultiple),
             ],
@@ -134,6 +136,7 @@ class StreamBlogPage(BlogPage):
         MultiFieldPanel(
             [
                 FieldPanel("date"),
+                FieldPanel("last_modified"),
                 FieldPanel("tags"),
                 FieldPanel("categories", widget=forms.CheckboxSelectMultiple),
             ],

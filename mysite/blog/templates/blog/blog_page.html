@@ -15,10 +15,11 @@
             {% for tag in page.tags.all %}
               <a href="/tagged-posts/?tag={{ tag }}">{{ tag }}</a> ~
             {% endfor %}
+            <br>
+            last updated ~ {{ page.last_modified }}
         </small>
     </div>
 {% endif %}
-
 <br>
 
 {{ page.body|richtext }}
