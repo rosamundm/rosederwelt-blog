@@ -78,4 +78,4 @@ def redirect_after_page_created(request, page):
     redirect to admin explore afer a new page has been created
     """
     if request.user.is_superuser:
-        return HttpResponseRedirect("/admin/pages" + str(page.id) + "/edit/")
+        return HttpResponseRedirect("/admin/pages/" + str(page.id) + "/edit/")
