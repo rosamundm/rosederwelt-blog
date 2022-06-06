@@ -9,7 +9,7 @@ mysite.css.save
 wagtaildb.bak
 .coverage
 .pre-commit-config.yaml
-
+static/
 
 node_modules  
 yarn.lock
