@@ -1,8 +1,8 @@
 See my blog posts about setting up the environment:
 
-https://rosederwelt.com/deploying-my-wagtail-blog-digital-ocean-pt-1/
+https://www.rosamund.dev/posts/wagtail-digital-ocean-pt-1
 
-https://rosederwelt.com/deploying-my-wagtail-blog-digital-ocean-pt-2/
+https://www.rosamund.dev/posts/wagtail-digital-ocean-pt-2
 
 If you clone this project, you'll have to change the settings path in `manage.py` and `wsgi.py` to:
 `mysite.settings.dev_example`
