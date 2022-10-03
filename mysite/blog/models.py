@@ -1,24 +1,17 @@
 from django import forms
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db import models
-
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from taggit.models import TaggedItemBase
-
 from wagtail.core.models import Page
-
 from wagtail.core.fields import StreamField, RichTextField
 from wagtail.admin.edit_handlers import (
     FieldPanel,
     MultiFieldPanel,
     StreamFieldPanel,
 )
-
-# from wagtail.images.edit_handlers import ImageChooserPanel
-# from wagtail.search import index
 from wagtail.snippets.models import register_snippet
-
 from .blocks import MyStream
 
 
